@@ -7,7 +7,6 @@ const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvla
 /*-------APP'S STATE (VARIABLES)--------*/ 
 let answer = [];
 let userMistakes = 0;
-let userAttempts = 0;
 let maxMistakes = 6;
 
 //correctWord = empty array
@@ -17,20 +16,25 @@ let maxMistakes = 6;
 
 
 /*-------CACHED ELEMENT REFERENCES--------*/ 
-let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)];
+//user clicks/ chooses category
+//user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
+let guess = document.getElementById('letterBox').value; //get value of user's input
+document.getElementById('letterBox').value = null; //input is blank after letter is inserted
 
+let fillInBlanks = document.getElementById('answer');
+
+//user clicks on reset button
+document.getElementById('reset').
 
 
 /*-------EVENT LISTENERS--------*/ 
 
-//user clicks/ chooses category
-//user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
+// document.querySelector('div').addEventListener('click', ) //incomplete
 
-let guess = document.getElementById('enterLetter').value; //get value of user's input
-document.getElementById('enterLetter').value = null; //input is blank after letter is inserted
+document.getElementById('letterButton').addEventListener('click', blankAnswer);
+document.getElementById('reset').addEventListener('click', ); //incomplete
 
-//user clicks on reset button
-document.getElementById('reset').
+
 
 
 /*-------FUNCTIONS--------*/ 
@@ -54,22 +58,34 @@ document.getElementById('reset').
 //update progress: how many are tries remaining, how many have they got, 
 //
 
+let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)];
 
 function blankAnswer() {                //blank for user to guess which letters
     for (let i = 0; i < randomWord.length; i++) {
-        answer[i] = '_'; //the letter is now an underscore for the user to guess
-        answer.join(' '); //there is a space between each letter 
+        answer[i] = '___'; //the letter is now an underscore for the user to guess
     }
+    answer.join(' '); //there is a space between each letter 
+    fillInBlanks.innerHTML;  //****************how to separate DOM from state here? ***********************
+    console.log('Hello');
 }
 
-function guesses() { //verify guesses (are they numbers, just 1 letter, etc.)
-    if (guess.length === 1) {
-        correctGuess();
-    } else { 
-        verifyGuesses(); 
+function guesses() {
+    verifyGuesses();
+    while (guess.length === 1) {
+        correctGuesses();
     }
-userAttempts++;
-} 
+
+}
+guesses();
+
+// function guesses() { //verify guesses (are they numbers, just 1 letter, etc.)
+//     if (guess.length === 1) {
+//         correctGuess();
+//     } else { 
+//         verifyGuesses(); 
+//     }
+// maxMistakes--;
+// } 
 
 function correctGuess() {
     for (let j = 0; j < randomWord.length; j++) {
@@ -77,17 +93,20 @@ function correctGuess() {
             answer[j] = guess;
         } else {
             alert('Try again with another letter. ');
+            userMistakes++;
         }
     }
 }
+correctGuess();
 
 function verifyGuess() {
     if (guess.length > 1 || guess === null) {
         alert('Please enter a SINGLE letter');
-    } else if (isNaN(guess) === true) { //returns true if value is NaN - can also use typeof letter !== 'number'
+    } else if (isNaN(guess) === false) { //returns true if value is NaN - can also use typeof letter !== 'number'
         alert('Please enter a LETTER');
     } 
 }
+verifyGuess();
 
 function trackMistakes() {
     if (userMistakes < maxMistakes ) {
@@ -99,6 +118,13 @@ function trackMistakes() {
     }
 }
 
+function reset() {
+    //input for letter is blank
+    //new randomWord
+    
+    
+}
+
 // function correctGuess() { //if guess is correct, add into answer, ALL letters, not just 1
 //     if (guess.length === 1) {
 //         for (let i = 0; i < randomWord.length; i++) {
@@ -106,6 +132,9 @@ function trackMistakes() {
 //         }
 //     } else if ()
 // }
+
+
+
 
 
 
