@@ -24,8 +24,8 @@ let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)];
 
 //user clicks/ chooses category
 //user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
-let letter = document.getElementById('enterLett').value; //get value of user's input
 
+let letter = document.getElementById('enterLett').value; //get value of user's input
 document.getElementById('enterLett').value = null; //input is blank after letter is inserted
 
 //user clicks on reset button
@@ -33,6 +33,10 @@ document.getElementById('reset').
 
 
 /*-------FUNCTIONS--------*/ 
+
+function correctGuess() {
+    if (letter === )
+}
 
 // function selectCategory() { //pick a random word from the array the user chose
 //     if (//user clicks animal) {
@@ -51,23 +55,44 @@ document.getElementById('reset').
 //update progress: how many are tries remaining, how many have they got, 
 //
 
+
+function blankAnswer() {
+    for (let i = 0; i < randomWord.length; i++) {
+        answer[i] = '_'; //the letter is now an underscore for the user to guess
+        answer.join(' '); //there is a space between each letter 
+    }
+}
+
+
+function correctGuess() { //if guess is correct, add into answer, ALL letters, not just 1
+
+}
+
+
 function resetGame() {
 
 }
-
-function answerStructure() {
-
+function trackMistakes() {
+    if (userMistakes < maxMistakes ) {
+        //continue to guess
+    } else if  (userMistakes === maxMistakes) {
+        alert('Last Try!')
+    } else {
+        //end game
+    }
 }
 
 function verifyInput() {
-    if (letter > 1) {
-        return 'Please enter a single letter';
-    } else if (isNaN(letter) === true) { //returns true if value is NaN
-        return 'Please enter a letter';
-    } else {
-
-    }
+    if (letter.length > 1 || letter === null) {
+        alert('Please enter a SINGLE letter');
+    } else if (isNaN(letter) === true) { //returns true if value is NaN - can also use typeof letter !== 'number'
+        alert('Please enter a LETTER');
+    } 
 }
+
+
+
+
 
 
 
