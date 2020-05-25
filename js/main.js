@@ -5,7 +5,7 @@ const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chip
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
-let answer = [];
+let answer = '';
 let userMistakes = 0;
 let maxMistakes = 6;
 
@@ -18,8 +18,9 @@ let maxMistakes = 6;
 /*-------CACHED ELEMENT REFERENCES--------*/ 
 //user clicks/ chooses category
 //user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
-let guess = document.getElementById('letterBox').value; //get value of user's input
+let guess = document.getElementById('letterBox'); //get value of user's input
 document.getElementById('letterBox').value = null; //input is blank after letter is inserted
+
 
 let fillInBlanks = document.getElementById('answer');
 
@@ -31,8 +32,8 @@ document.getElementById('reset').
 
 // document.querySelector('div').addEventListener('click', ) //incomplete
 
-document.getElementById('letterButton').addEventListener('click', blankAnswer);
-document.getElementById('reset').addEventListener('click', ); //incomplete
+// document.getElementById('letterButton').addEventListener('click', blankAnswer);
+// document.getElementById('reset').addEventListener('click', ); //incomplete
 
 
 
@@ -58,18 +59,59 @@ document.getElementById('reset').addEventListener('click', ); //incomplete
 //update progress: how many are tries remaining, how many have they got, 
 //
 
-let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)];
+let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
 
-function blankAnswer() {                //blank for user to guess which letters
+
+function blankAnswer() {
+    let answer = [];
     for (let i = 0; i < randomWord.length; i++) {
-        answer[i] = '___'; //the letter is now an underscore for the user to guess
+        answer.push('__');
     }
-    answer.join(' '); //there is a space between each letter 
-    fillInBlanks.innerHTML;  //****************how to separate DOM from state here? ***********************
-    console.log('Hello');
+    fillInBlanks.innerHTML = answer.join(' ');
 }
+blankAnswer();
 
-function guesses() {
+// function blankAnswer() {     //blank for user to guess which letters
+//     let answer = [];            
+//     for (let i = 0; i < randomWord.length; i++) {  //i = each element in the randomWord
+//         answer.replace('[i]', '___');
+//         // answer[i] = '___'; //the letter is now an underscore for the user to guess
+
+//     }
+//     answer[i].join(' '); //there is a space between each letter 
+//     fillInBlanks.innerHTML = answer;  //****************how to separate DOM from state here? ***********************
+//     console.log('Hello');
+// }
+
+
+function blankAnswer() {
+    let answer = [];
+    for (let i = 0; i< randomWord.length; i++) { //i = each letter in the randomWord
+        randomWord[i] = randomWord[i].replace('[i]', '___');
+        randomWord.join(' ');
+        console.log(randomWord)[i];
+    }
+answer.push(randomWord[i]);
+}
+blankAnswer();
+
+function blankAnswer() {
+    for (let i = 0; i < randomWord.length; i++) {
+        let answer = randomWord.replace('[i]', '__');
+        // let answer = answer + "_ ";
+        // console.log(answer);
+    }
+    console.log(answer);
+    return answer;
+}
+blankAnswer();
+
+// function blankAnswer() {
+//     let randomWord = randomWord.map()
+// }
+
+
+function makeAGuess() {
     verifyGuesses();
     while (guess.length === 1) {
         correctGuesses();
@@ -90,7 +132,7 @@ guesses();
 function correctGuess() {
     for (let j = 0; j < randomWord.length; j++) {
         if (randomWord[j] === guess) {
-            answer[j] = guess;
+            answer[j] = guess.value;
         } else {
             alert('Try again with another letter. ');
             userMistakes++;
@@ -100,9 +142,9 @@ function correctGuess() {
 correctGuess();
 
 function verifyGuess() {
-    if (guess.length > 1 || guess === null) {
+    if (guess.length > 1 || guess.value === null) {
         alert('Please enter a SINGLE letter');
-    } else if (isNaN(guess) === false) { //returns true if value is NaN - can also use typeof letter !== 'number'
+    } else if (isNaN(guess.value) === false) { //returns true if value is NaN - can also use typeof letter !== 'number'
         alert('Please enter a LETTER');
     } 
 }
@@ -121,7 +163,8 @@ function trackMistakes() {
 function reset() {
     //input for letter is blank
     //new randomWord
-    
+    //********************REFERENCES THE APP's STATE VARIABLES AGAIN
+
     
 }
 
@@ -132,17 +175,6 @@ function reset() {
 //         }
 //     } else if ()
 // }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
