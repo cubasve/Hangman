@@ -5,7 +5,10 @@ The player is presented with a word or phrase in underscores, where each line re
 May the odds be in your favor.
 Have fun!
 
-Background information: Users typically start with vowels first (e.g. A, E, I, O, U) since they are present in most words. Then, use their judgment to decipher what the word could be. 
+Background information: 
+1. Computer generates a random word and presents it to the player in the form of dashes.
+2. The player tries to guess what letter
+Users typically start with vowels first (e.g. A, E, I, O, U) since they are present in most words. Then, use their judgment to decipher what the word could be. 
 
 
 Screenshots of game:
@@ -21,7 +24,7 @@ Getting Started: Game link
 
 
 Next Steps: Planned future enhancements
-- Multi-player game: instead of just a single player, this game could include multiple, which makes things more fun.
+- Multi-player game: Instead of just a single player, this game could include multiple, which makes things more fun.
 - More categories: The current categories of the game are limited to food. Having more variety appeals to more potential users.
 - Incorporate phrases: Only words were used in this current version of the game. Using phrases makes the game more difficult and fun.
 - User can guess the entire word/phrase if they choose to: Instead of guessing one character at a time until all characters are filled up, if the player knows the phrase beforehand, they can type in their guess for the entire word/phrase. 
