@@ -6,7 +6,7 @@ const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvla
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
 let randomWord;
-// let guessedLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+// let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
 let answerWord = ['__', '__', '__', '__', '__', '__', '__'];
 let wrongGuesses; //just declare, didn't assign
@@ -26,9 +26,9 @@ let wrongGuesses; //just declare, didn't assign
 /*-------CACHED ELEMENT REFERENCES--------*/ 
 //user clicks/ chooses category
 //user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
-let guess = document.getElementById('letterBox'); //get value of user's input
+let guessEl = document.getElementById('letterBox'); //get value of user's input
 // document.getElementById('letterBox').value = null; //input is blank after letter is inserted
-let message = document.getElementById('message');
+let messageEl = document.getElementById('message');
 
 
 let fillInBlanks = document.getElementById('answer');
@@ -48,6 +48,8 @@ let fillInBlanks = document.getElementById('answer');
 
 
 /*-------FUNCTIONS--------*/ 
+initialize();
+
 function initialize() {
     //RESET THE GAME
     //picks a random word
@@ -71,20 +73,34 @@ function renderAnswerHTML() {
     }
     fillInBlanks.innerHTML = answerHTML.join(' ');
 }
-//We're loop through the letters of randomWord 
+//We're looping through the letters of randomWord 
 //if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
 //if not, an underscore is pushed to answerHTML
 //answerWord = ___ ___ ___ ___ ___ ___
 //answerHTML: changes the answerWord as the user enters a guessedLetters
 
+
 function render() {
     //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
     //show image based on how many wrong guesses
     //show list of guessed letters
+
+    guessLetterEventHandler(); //verifies the input first
+    
     let answerWord.length = randomWord.length;
+    for (let i = 0; i < answerWord.length; i++) {
+        if (guessEl.value === randomWord[i]) {
+            answerWord.innerHTML = guessLetters.value;
+            guessedLetters.push(guessEl.value)
+        } else {
+
+        }
+    }
+    renderAnswerHTML();
+    // let answerWord.length = randomWord.length;
     for (let i =0; i < answerWord.length; i++) {
         // let letter = document.getElementById('')
-        if () {
+        if (guessLetters[i]) {
             answerWord.innerHTML = guessLetters.value;
             guessedLetters.push();//
         } else {
@@ -98,14 +114,21 @@ function guessLetterEventHandler() {
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
-    if (guess.length === 1) {
-        guessedLetters.push(letter);
-        if (guessedLetter[guessedLetter.length-1].includes(answerWord[i])) answerWord.push(guessedLetter[guessedLetters.length-1]);
-    } else if (guess.length > 1 || guess=== null || isNaN(guess) === false) {
-        message.innerHTML = 'Please enter a SINGLE LETTER'; 
+    if (guessEl.length === 1) {
+        guessedLetters.push(guessEl.value); //adds it to the end of the array
+        // messageEl.innerHTML = 'Good guess!';
+        if (randomWord.includes(guessEl.value)) { //if the guess is in the randomWord
+            
+        }
+    } else if (guessEl.length > 1 || guessEl=== null || isNaN(guessEl) === false) {
+        messageEl.innerHTML = 'Please enter a SINGLE LETTER'; 
         wrongGuesses++;
     }
 }
+
+// if (guessedLetter[guessedLetter.length-1].includes(answerWord[i])) {
+//     answerWord.push(guessedLetter[guessedLetters.length-1]);
+//     messageEl.innerHTML = 'Good guess!';
 
 
 
@@ -126,61 +149,6 @@ function guessLetterEventHandler() {
 //     }
 // }
 
-//reset the game
-//user chooses letter --> if right: add it to all underscores VS if wrong: tell user
-//update progress: how many are tries remaining, how many have they got, 
-//
-
-let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
-
-
-function blankAnswer() {
-    let answer = [];  //NOTE: Don't need answer here, it's already defined in the global scope
-    for (let i = 0; i < randomWord.length; i++) {
-        answer.push('__');
-    }
-    fillInBlanks.innerHTML = answer.join(' ');
-}
-blankAnswer();
-
-// function blankAnswer() {     //blank for user to guess which letters
-//     let answer = [];            
-//     for (let i = 0; i < randomWord.length; i++) {  //i = each element in the randomWord
-//         answer.replace('[i]', '___');
-//         // answer[i] = '___'; //the letter is now an underscore for the user to guess
-
-//     }
-//     answer[i].join(' '); //there is a space between each letter 
-//     fillInBlanks.innerHTML = answer;  //****************how to separate DOM from state here? ***********************
-//     console.log('Hello');
-// }
-
-
-// function blankAnswer() {
-//     let answer = [];
-//     for (let i = 0; i< randomWord.length; i++) { //i = each letter in the randomWord
-//         randomWord[i] = randomWord[i].replace('[i]', '___');
-//         randomWord.join(' ');
-//         console.log(randomWord)[i];
-//     }
-// answer.push(randomWord[i]);
-// }
-// blankAnswer();
-
-// function blankAnswer() {
-//     for (let i = 0; i < randomWord.length; i++) {
-//         let answer = randomWord.replace('[i]', '__');
-//         // let answer = answer + "_ ";
-//         // console.log(answer);
-//     }
-//     console.log(answer);
-//     return answer;
-// }
-// blankAnswer();
-
-// function blankAnswer() {
-//     let randomWord = randomWord.map()
-// }
 
 
 // function makeAGuess() {
@@ -245,26 +213,3 @@ function trackMistakes() {
         //end game
     }
 }
-
-function reset() {
-    //input for letter is blank
-    //new randomWord
-    //********************REFERENCES THE APP's STATE VARIABLES AGAIN
-
-    
-}
-
-// function correctGuess() { //if guess is correct, add into answer, ALL letters, not just 1
-//     if (guess.length === 1) {
-//         for (let i = 0; i < randomWord.length; i++) {
-//             correctGuess();
-//         }
-//     } else if ()
-// }
-
-
-
-
-
-
-

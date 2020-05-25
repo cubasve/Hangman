@@ -9,14 +9,25 @@
     
 </head>
 <body>
-    <h1>HANGMAN</h1>
-    <h2>Select a category</h2>
-        <div>
-            <p id="fruit">FRUITS</p>
-            <p id="veg">VEGETABLES</p>
-            <p id="snack">SNACKS</p>
-            <p id="dishes">FOOD DISHES</p>
-        </div>
+    <div class="header">
+        <h1>HANGMAN</h1>
+        <h2>Select a category</h2>
+    </div>
+    <div class="category">
+        <p id="fruit">FRUITS</p>
+        <p id="veg">VEGETABLES</p>
+        <p id="snack">SNACKS</p>
+        <p id="dishes">FOOD DISHES</p>
+    </div>
+    <div class="images">
+        <img class="one empty" src="img/emptyHangman.png" alt="emptyHangman">
+        <img class="two head" src="img/headHangman.png" alt="headHangman">
+        <img class="three body" src="img/bodyHangman.png" alt="bodyHangman">
+        <img class="four arm" src="img/oneArmHangman.png" alt="oneArmHangman">
+        <img class="five two-arms" src="img/twoArmHangman.png" alt="twoArmsHangman">
+        <img class="six foot" src="img/oneFootHangman.png" alt="oneFootHangman">
+        <img class="seven dead" src="img/fullHangman.png" alt="fullHangman">
+    </div>
     <br>
     <p id="guessedLetters">You have __ out of 6 tries left!</p>
     <p id="answer"></p>
