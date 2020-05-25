@@ -1,29 +1,24 @@
 # Hangman
 
-Description: 
+**Description:**
 The player is presented with a word or phrase in underscores, where each line represents a letter. The player then has to guess one letter at a time to eventually get the phrase. Each character that is incorrectly guessed and is not in the word/phrase will result in a body part being drawn. The user can only make 6 mistakes before the hangman is completely drawn. 
 May the odds be in your favor.
 Have fun!
 
-Background information: 
-1. Computer generates a random word and presents it to the player in the form of dashes.
-2. The player tries to guess what letter
-Users typically start with vowels first (e.g. A, E, I, O, U) since they are present in most words. Then, use their judgment to decipher what the word could be. 
+
+**Screenshots of game:**
 
 
-Screenshots of game:
-
-
-Technologies Used:
+**Technologies Used:**
 - HTML
 - CSS
 - JavaScript
 
 
-Getting Started: Game link
+**Getting Started:** Game link
 
 
-Next Steps: Planned future enhancements
+**Next Steps: Planned future enhancements**
 - Multi-player game: Instead of just a single player, this game could include multiple, which makes things more fun.
 - More categories: The current categories of the game are limited to food. Having more variety appeals to more potential users.
 - Incorporate phrases: Only words were used in this current version of the game. Using phrases makes the game more difficult and fun.
