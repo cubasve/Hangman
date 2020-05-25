@@ -5,9 +5,17 @@ const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chip
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
-let answer = [];
-let userMistakes = 0;
-let maxMistakes = 6;
+let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
+// let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+let guessedLetters = []; //add letters the player already guessed
+let answerWord = ['__', ]
+let wrongGuesses; //just declare, didn't assign
+//message or error message
+//if you guessed all letters
+
+// let answer = [];
+// let userMistakes = 0;
+// let maxMistakes = 6;
 
 //correctWord = empty array
 //user mistakes are 0 since they never started guessing
@@ -39,6 +47,36 @@ let fillInBlanks = document.getElementById('answer');
 
 
 /*-------FUNCTIONS--------*/ 
+function initialize() {
+    //RESET THE GAME
+    //picks a random word
+    //sets guessed letters to empty array
+    //sets wrong guesses to 0
+    //render()
+}
+
+function renderAnswerHTML() {
+    let answerHTML = [];
+    for (let i = 0; i < randomWord.length; i++) {
+        if (guessedLetters.includes(randomWord[i])) {
+            answerHTML.push(randomWord[i]);
+        } else {
+            answerHTML.push('___');
+        }
+    }
+    fillInBlanks.innerHTML = answerHTML.join(' ');
+}
+
+function render() {
+    //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
+    //show image based on how many wrong guesses
+    //show list of guessed letters
+}
+
+
+
+
+
 
 
 
