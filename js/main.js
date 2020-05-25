@@ -1,14 +1,14 @@
 /*-------CONSTANTS--------*/ 
-const fruitArray = ['apple', 'banana', 'pear', 'grapes', 'blueberry', 'peach', 'honewydew', 'strawberries', 'orange'];
+const fruitArray = ['apple', 'banana', 'pear', 'grape', 'blueberry', 'peach', 'honeydew', 'strawberry', 'orange'];
 const vegArray = ['kale', 'potato', 'onion', 'pepper', 'tomato', 'squash', 'carrot', 'celery', 'beet', 'broccoli', 'spinach', 'zucchini' ];
 const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chips', 'muffin', 'biscuit' ];
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
-let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
-// let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-let guessedLetters = []; //add letters the player already guessed
-let answerWord = ['__', ]
+let randomWord;
+// let guessedLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+let guessedLetters; //add letters the player already guessed
+let answerWord = ['__', '__', '__', '__', '__', '__', '__'];
 let wrongGuesses; //just declare, didn't assign
 //message or error message
 //if you guessed all letters
@@ -28,6 +28,7 @@ let wrongGuesses; //just declare, didn't assign
 //user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
 let guess = document.getElementById('letterBox'); //get value of user's input
 // document.getElementById('letterBox').value = null; //input is blank after letter is inserted
+let message = document.getElementById('message');
 
 
 let fillInBlanks = document.getElementById('answer');
@@ -53,12 +54,16 @@ function initialize() {
     //sets guessed letters to empty array
     //sets wrong guesses to 0
     //render()
+    let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
+    let guessedLetters = []; //empty array - player hasn't started guessing yet
+    letWrongGuesses = 0; //game just started - no mistakes yet
+    render();
 }
 
 function renderAnswerHTML() {
     let answerHTML = [];
-    for (let i = 0; i < randomWord.length; i++) {
-        if (guessedLetters.includes(randomWord[i])) {
+    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
+        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
             answerHTML.push(randomWord[i]);
         } else {
             answerHTML.push('___');
@@ -66,11 +71,39 @@ function renderAnswerHTML() {
     }
     fillInBlanks.innerHTML = answerHTML.join(' ');
 }
+//We're loop through the letters of randomWord 
+//if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
+//if not, an underscore is pushed to answerHTML
+//answerWord = ___ ___ ___ ___ ___ ___
+//answerHTML: changes the answerWord as the user enters a guessedLetters
 
 function render() {
     //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
     //show image based on how many wrong guesses
     //show list of guessed letters
+    let answerWord.length = randomWord.length;
+    for (let i =0; i < answerWord.length; i++) {
+        let letter = document.getElementById('')
+        if () {
+            .innerHTML = guessLetters.value;
+            guessedLetters.push();//
+        } else {
+
+        }
+    }
+}
+
+function guessLetterEventHandler() {
+    //validate that 1 letter was put in
+    //add letter to guessed letters list
+    //(if you use answer word array and letter is correct, adjust array)
+    //if letter was not a correct guess, increment wrong guesses
+    if (letter.length === 1) {
+        guessedLetters.push(letter);
+        if ()
+    } else if (guess.length > 1 || guess === null || isNaN(guess) === false) {
+        message.innerHTML = 'Please enter a SINGLE LETTER'; 
+    }
 }
 
 
