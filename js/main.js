@@ -83,9 +83,9 @@ function render() {
     //show list of guessed letters
     let answerWord.length = randomWord.length;
     for (let i =0; i < answerWord.length; i++) {
-        let letter = document.getElementById('')
+        // let letter = document.getElementById('')
         if () {
-            .innerHTML = guessLetters.value;
+            answerWord.innerHTML = guessLetters.value;
             guessedLetters.push();//
         } else {
 
@@ -98,11 +98,12 @@ function guessLetterEventHandler() {
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
-    if (letter.length === 1) {
+    if (guess.length === 1) {
         guessedLetters.push(letter);
-        if ()
-    } else if (guess.length > 1 || guess === null || isNaN(guess) === false) {
+        if (guessedLetter[guessedLetter.length-1].includes(answerWord[i])) answerWord.push(guessedLetter[guessedLetters.length-1]);
+    } else if (guess.length > 1 || guess=== null || isNaN(guess) === false) {
         message.innerHTML = 'Please enter a SINGLE LETTER'; 
+        wrongGuesses++;
     }
 }
 
