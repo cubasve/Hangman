@@ -5,7 +5,7 @@ const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chip
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
-let answer = '';
+let answer = [];
 let userMistakes = 0;
 let maxMistakes = 6;
 
@@ -19,13 +19,13 @@ let maxMistakes = 6;
 //user clicks/ chooses category
 //user clicks on button, response --> right? add letter to block - wrong? tell user --> deduct a mistake
 let guess = document.getElementById('letterBox'); //get value of user's input
-document.getElementById('letterBox').value = null; //input is blank after letter is inserted
+// document.getElementById('letterBox').value = null; //input is blank after letter is inserted
 
 
 let fillInBlanks = document.getElementById('answer');
 
-//user clicks on reset button
-document.getElementById('reset').
+// //user clicks on reset button
+// document.getElementById('reset').
 
 
 /*-------EVENT LISTENERS--------*/ 
@@ -63,7 +63,7 @@ let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpp
 
 
 function blankAnswer() {
-    let answer = [];
+    let answer = [];  //NOTE: Don't need answer here, it's already defined in the global scope
     for (let i = 0; i < randomWord.length; i++) {
         answer.push('__');
     }
@@ -84,41 +84,41 @@ blankAnswer();
 // }
 
 
-function blankAnswer() {
-    let answer = [];
-    for (let i = 0; i< randomWord.length; i++) { //i = each letter in the randomWord
-        randomWord[i] = randomWord[i].replace('[i]', '___');
-        randomWord.join(' ');
-        console.log(randomWord)[i];
-    }
-answer.push(randomWord[i]);
-}
-blankAnswer();
+// function blankAnswer() {
+//     let answer = [];
+//     for (let i = 0; i< randomWord.length; i++) { //i = each letter in the randomWord
+//         randomWord[i] = randomWord[i].replace('[i]', '___');
+//         randomWord.join(' ');
+//         console.log(randomWord)[i];
+//     }
+// answer.push(randomWord[i]);
+// }
+// blankAnswer();
 
-function blankAnswer() {
-    for (let i = 0; i < randomWord.length; i++) {
-        let answer = randomWord.replace('[i]', '__');
-        // let answer = answer + "_ ";
-        // console.log(answer);
-    }
-    console.log(answer);
-    return answer;
-}
-blankAnswer();
+// function blankAnswer() {
+//     for (let i = 0; i < randomWord.length; i++) {
+//         let answer = randomWord.replace('[i]', '__');
+//         // let answer = answer + "_ ";
+//         // console.log(answer);
+//     }
+//     console.log(answer);
+//     return answer;
+// }
+// blankAnswer();
 
 // function blankAnswer() {
 //     let randomWord = randomWord.map()
 // }
 
 
-function makeAGuess() {
-    verifyGuesses();
-    while (guess.length === 1) {
-        correctGuesses();
-    }
+// function makeAGuess() {
+//     verifyGuesses();
+//     while (guess.length === 1) {
+//         correctGuesses();
+//     }
 
-}
-guesses();
+// }
+// guesses();
 
 // function guesses() { //verify guesses (are they numbers, just 1 letter, etc.)
 //     if (guess.length === 1) {
@@ -131,7 +131,7 @@ guesses();
 
 function correctGuess() {
     for (let j = 0; j < randomWord.length; j++) {
-        if (randomWord[j] === guess) {
+        if (randomWord[j] === guess) {   //if (randomWord[i] === guess) {answer[i].push(guess)}
             answer[j] = guess.value;
         } else {
             alert('Try again with another letter. ');
@@ -149,6 +149,20 @@ function verifyGuess() {
     } 
 }
 verifyGuess();
+
+//********************Another version I did
+// function verifyGuess('singleLett') 
+    //   let singleLett = guess.value;
+    //   if (singleLett.length === 1) {
+    //     //undergo the function that takes it
+    //   } else if (singleLett.length > 1 || singleLett === null ) {
+    //     alert('Please enter a SINGLE letter')
+    //   } else if (isNaN(singleLett) === false) {
+    //     alert('Please enter a LETTER ')
+    //   }
+       
+    // }
+    // console.log(verifyGuess(e));
 
 function trackMistakes() {
     if (userMistakes < maxMistakes ) {
@@ -175,6 +189,9 @@ function reset() {
 //         }
 //     } else if ()
 // }
+
+
+
 
 
 
