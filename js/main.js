@@ -91,28 +91,31 @@ function guessLetterEventHandler() {
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
     let letter = guessEl.value.toUpperCase();
-    messageEl.innerHTML = null;
+    // messageEl.innerHTML = null;
     letter.innerHTML = null;
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-        messageEl.innerHTML = 'Please enter a single letter!';
+      console.log('Please enter a single letter');
+      messageEl.innerHTML = 'Please enter a SINGLE LETTER';
     } else if (letter.length === 1) {
-        guessedLetters.push(guessEl.value);
+        console.log(letter);
+        guessedLetters.push(letter);
         for (let i = 0; i < randomWord.length; i++) {
-            if (randomWord[i].includes(letter)) {
-                messageEl.innerHTML = 'Good guess!';
-                renderAnswerHTML();
-            }
+          if (randomWord[i].includes(letter)) {
+            console.log('Good guess!');
+            messageEl.innerHTML = 'Good guess!';
+            renderAnswerHTML();
+          }
         }
-
         } else {
+            console.log('Try again!')
             messageEl.innerHTML = 'Try again!'
             wrongGuesses++;
             changeImages();
         }
-    }
     messageEl.innerHTML = null;
     letter.innerHTML = null; //clears input box so user can enter in a new letter
 }
+
 
 function changeImages() {
 
