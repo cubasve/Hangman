@@ -35,7 +35,7 @@ let guessEl = document.getElementById('letterBox'); //get value of user's input
 let messageEl = document.getElementById('message');
 
 
-let fillInBlanks = document.getElementById('answer');
+let fillInBlanksEl = document.getElementById('answer');
 
 // //user clicks on reset button
 // document.getElementById('reset').
@@ -44,10 +44,10 @@ let fillInBlanks = document.getElementById('answer');
 /*-------EVENT LISTENERS--------*/ 
 //Event listeners for each click:
 //4 event listeners for each category
-document.getElementById('fruit').addEventListener('click', selectedCategory);
-document.getElementById('veg').addEventListener('click', selectedCategory);
-document.getElementById('snack').addEventListener('click', selectedCategory);
-document.getElementById('dishes').addEventListener('click', selectedCategory);
+document.getElementById('fruit').addEventListener('click', selectCategory);
+document.getElementById('veg').addEventListener('click', selectCategory);
+document.getElementById('snack').addEventListener('click', selectCategory);
+document.getElementById('dishes').addEventListener('click', selectCategory);
 
 //1 event listener for enter a letter
 document.getElementById('letterButton').addEventListener('click', //enter function);
@@ -74,12 +74,29 @@ function initialize() {
     //sets wrong guesses to 0
     //render()
 
-    // let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();  
+    // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase());  
     selectedCategory(); //choose a category
     let guessedLetters = []; //empty array - player hasn't started guessing yet
     letWrongGuesses = 0; //game just started - no mistakes yet
     render();
 }
+
+// function selectCategory() {
+
+// }
+
+// function selectFruitArr() {
+//     let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
+// }
+// function selectVegArr() {
+//     let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase();
+// }
+// function selectSnackArr() {
+//     let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase();
+// }
+// function selectDishArr() {
+//     let randomWord = dishesArray[Math.floor(Math.random() * dishesArray.length)].toUpperCase();
+// }
 
 function selectCategory() {
     if (selectedCategory === categories[0]) {
@@ -102,7 +119,7 @@ function renderAnswerHTML() {
             answerHTML.push('___');
         }
     }
-    fillInBlanks.innerHTML = answerHTML.join(' ');
+    fillInBlanksEl.innerHTML = answerHTML.join(' ');
 }
 //We're looping through the letters of randomWord 
 //if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
@@ -139,7 +156,6 @@ function render() {
         }
     }
 }
-
 function guessLetterEventHandler() {
     //validate that 1 letter was put in
     //add letter to guessed letters list
@@ -157,35 +173,24 @@ function guessLetterEventHandler() {
     }
 }
 
+function renderAnswerHTML() {
+    let answerHTML = [];
+    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
+        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
+            answerHTML.push(randomWord[i]);
+        } else {
+            answerHTML.push('___');
+        }
+    }
+    fillInBlanksEl.innerHTML = answerHTML.join(' ');
+}
+
 // if (guessedLetter[guessedLetter.length-1].includes(answerWord[i])) {
 //     answerWord.push(guessedLetter[guessedLetters.length-1]);
 //     messageEl.innerHTML = 'Good guess!';
 
 
-
-
-
-
-
-
-// function selectCategory() { //pick a random word from the array the user chose
-//     if (//user clicks animal) {
-//         fruitArray[Math.floor(Math.random() * fruitArray.length)];
-//     } else if (//user clicks food) {
-//         vegArray[Math.floor(Math.random() * vegArray.length)];
-//     } else if (//user clicks city) {
-//         snackArray[Math.floor(Math.random() * snackArray.length)];
-//     } else (//user clicks company) {
-//         foodDishArray[Math.floor(Math.random() * foodDishArray.length)];
-//     }
-// }
-
-
-
-
-
-/
-
+/* ------------FUNCTIONS I WORKED ON BEFORE------------------------------ */
 function correctGuess() {
     for (let j = 0; j < randomWord.length; j++) {
         if (randomWord[j] === guess) {   //if (randomWord[i] === guess) {answer[i].push(guess)}
