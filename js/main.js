@@ -23,7 +23,6 @@ let guessEl = document.getElementById('letterBox'); //get value of user's input
 let messageEl = document.getElementById('message');
 let fillInBlanksEl = document.getElementById('answer');
 
-
 /*-------EVENT LISTENERS--------*/ 
 //Event listeners for each click:
 //4 event listeners for each category
@@ -37,16 +36,7 @@ let fillInBlanksEl = document.getElementById('answer');
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
 
 //1 event listener for reset button
-document.getElementById('reset').addEventListener('click', initialize);
-
-
-// document.querySelector('div').addEventListener('click', ) //incomplete
-
-// document.getElementById('letterButton').addEventListener('click', blankAnswer);
-// document.getElementById('reset').addEventListener('click', ); //incomplete
-
-
-
+// document.getElementById('reset').addEventListener('click', initialize);
 
 /*-------FUNCTIONS--------*/ 
 initialize();
@@ -67,6 +57,74 @@ function initialize() {
     let answerWord = [];
     render();
 }
+
+function render() {
+    //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
+    //show image based on how many wrong guesses
+    //show list of guessed letters
+    let answerWord = [];
+    for (let i = 0; i < randomWord.length; i++) {
+        answerWord.push('___');
+    }
+    fillInBlanksEl.innerHTML = answerWord.join(' ');
+}
+
+function renderAnswerHTML() {
+    let answerHTML = [];
+    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
+        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
+            answerHTML.push(randomWord[i]);
+        } else {
+            answerHTML.push('___');
+        }
+    }
+    fillInBlanksEl.innerHTML = answerHTML.join(' ');
+}
+//We're looping through the letters of randomWord 
+//if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
+//if not, an underscore is pushed to answerHTML
+//answerWord = ___ ___ ___ ___ ___ ___
+//answerHTML: changes the answerWord as the user enters a guessedLetters
+
+function guessLetterEventHandler() {
+    //validate that 1 letter was put in
+    //add letter to guessed letters list
+    //(if you use answer word array and letter is correct, adjust array)
+    //if letter was not a correct guess, increment wrong guesses
+    let letter = guessEl.value.toUpperCase();
+    messageEl.innerHTML = null;
+    letter.innerHTML = null;
+    if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
+        messageEl.innerHTML = 'Please enter a single letter!';
+    } else if (letter.length === 1) {
+        guessedLetters.push(guessEl.value);
+        for (let i = 0; i < randomWord.length; i++) {
+            if (randomWord[i].includes(letter)) {
+                messageEl.innerHTML = 'Good guess!';
+                renderAnswerHTML();
+            }
+        }
+
+        } else {
+            messageEl.innerHTML = 'Try again!'
+            wrongGuesses++;
+            changeImages();
+        }
+    }
+    messageEl.innerHTML = null;
+    letter.innerHTML = null; //clears input box so user can enter in a new letter
+}
+
+function changeImages() {
+
+    let wrongGuesses = 6;
+    for (i = 0; i = 6; i++) {
+
+    }
+}
+
+
+
 
 // function selectCategory() {
 
@@ -97,35 +155,10 @@ function initialize() {
 //     }
 // }
 
-function renderAnswerHTML() {
-    let answerHTML = [];
-    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
-        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
-            answerHTML.push(randomWord[i]);
-        } else {
-            answerHTML.push('___');
-        }
-    }
-    fillInBlanksEl.innerHTML = answerHTML.join(' ');
-}
-//We're looping through the letters of randomWord 
-//if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
-//if not, an underscore is pushed to answerHTML
-//answerWord = ___ ___ ___ ___ ___ ___
-//answerHTML: changes the answerWord as the user enters a guessedLetters
 
 
-function render() {
-    //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
-    //show image based on how many wrong guesses
-    //show list of guessed letters
-    let answerWord = [];
-    for (let i = 0; i < randomWord.length; i++) {
-        answerWord.push('___');
-    }
-    fillInBlanksEl.innerHTML = answerWord.join(' ');
-    // guessLetterEventHandler(); //verifies the input first --> it calls renderAnswerHTML()
-}
+
+
 
     // let answerWord.length = randomWord.length; //Not sure about this line of code
     // for (let i = 0; i < answerWord.length; i++) {
@@ -147,58 +180,3 @@ function render() {
 
     //     }
     // }
-
-function guessLetterEventHandler() {
-    //validate that 1 letter was put in
-    //add letter to guessed letters list
-    //(if you use answer word array and letter is correct, adjust array)
-    //if letter was not a correct guess, increment wrong guesses
-    let letter = guessEl.value.toUpperCase();
-    messageEl.innerHTML = null;
-    letter.innerHTML = null;
-    if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-        messageEl.innerHTML = 'Please enter a single letter!';
-    } else if (letter.length === 1) {
-        guessedLetters.push(guessEl.value);
-        for (let i = 0; i < randomWord.length; i++) {
-            if (randomWord[i].includes(letter)) {
-                messageEl.innerHTML = 'Good guess!';
-            }
-        }
-
-        } else {
-            messageEl.innerHTML = 'Try again!'
-            wrongGuesses++;
-            changeImages();
-        }
-    }
-    messageEl.innerHTML = null;
-    letter.innerHTML = null; //clears input box so user can enter in a new letter
-}
-
-function changeImages() {
-
-    let wrongGuesses = 6;
-    for (i = 0; i = 6; i++) {
-
-    }
-}
-
-function renderAnswerHTML() {
-    let answerHTML = [];
-    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
-        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
-            answerHTML.push(randomWord[i]);
-        } else {
-            answerHTML.push('___');
-        }
-    }
-    fillInBlanksEl.innerHTML = answerHTML.join(' ');
-}
-
-//if you use answer word array and letter is correct, adjust the array
-//if letter was not a correct guess, increment wrong guesses
-// if (randomWord[i].includes(guessEl.value)) {
-//     answerWord.
-// }
-// if (randomWord.includes(guessEl.value)) { //if the guess is in the randomWord

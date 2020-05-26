@@ -1,4 +1,4 @@
-* {
+/* * {
     box-sizing: content-box;
 }
 
@@ -50,7 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     grid-area: dishes;
-} */
+} 
 
 .images {
     grid-area: images;
@@ -62,4 +62,4 @@ body {
 
 .footer {
     grid-area: footer;
-} 
+}  */
