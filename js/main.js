@@ -163,15 +163,26 @@ function guessLetterEventHandler() {
     //if letter was not a correct guess, increment wrong guesses
     if (guessEl.length === 1) {
         guessedLetters.push(guessEl.value); //adds it to the end of the array
-        // messageEl.innerHTML = 'Good guess!';
-        if (randomWord.includes(guessEl.value)) { //if the guess is in the randomWord
-
-        }
+        messageEl.innerHTML = 'Good guess!';
     } else if (guessEl.length > 1 || guessEl=== null || isNaN(guessEl) === false) {
         messageEl.innerHTML = 'Please enter a SINGLE LETTER'; 
         wrongGuesses++;
     }
 }
+
+
+//if you use answer word array and letter is correct, adjust the array
+//if letter was not a correct guess, increment wrong guesses
+if (randomWord[i].includes(guessEl.value)) {
+    answerWord.
+}
+
+
+
+
+if (randomWord.includes(guessEl.value)) { //if the guess is in the randomWord
+
+
 
 function renderAnswerHTML() {
     let answerHTML = [];
