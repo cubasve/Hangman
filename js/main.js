@@ -9,7 +9,6 @@ const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza'
 /*-------APP'S STATE (VARIABLES)--------*/ 
 
 let randomWord;
-// let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
 let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
 let wrongGuesses; 
@@ -45,6 +44,7 @@ function initialize() {
     guessedLetters = []; //don't redeclare --> just assign
     wrongGuesses = 0; //game just started - no mistakes yet
     answerWord = [];
+    addLetterEl.innerHTML = null;
     render();
 }
 
