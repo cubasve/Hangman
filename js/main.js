@@ -4,7 +4,11 @@ const vegArray = ['kale', 'potato', 'onion', 'pepper', 'tomato', 'squash', 'carr
 const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chips', 'muffin', 'biscuit' ];
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
 
+const categories = [fruitArray, vegArray, snackArray, foodDishArray];
+
+
 /*-------APP'S STATE (VARIABLES)--------*/ 
+let selectedCategory;
 let randomWord;
 // let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
@@ -56,10 +60,22 @@ function initialize() {
     //sets guessed letters to empty array
     //sets wrong guesses to 0
     //render()
-    let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
+    selectedCategory(); //choose a category
     let guessedLetters = []; //empty array - player hasn't started guessing yet
     letWrongGuesses = 0; //game just started - no mistakes yet
     render();
+}
+
+function selectCategory() {
+    if (selectedCategory === categories[0]) {
+        let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
+    } else if (selectedCategory === categories[1]) {
+        let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase();
+    } else if (selectedCategory === categories[2]) {
+        let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase();
+    } else if (selectedCategory === categories[3]) {
+        let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
+    }
 }
 
 function renderAnswerHTML() {
@@ -118,7 +134,7 @@ function guessLetterEventHandler() {
         guessedLetters.push(guessEl.value); //adds it to the end of the array
         // messageEl.innerHTML = 'Good guess!';
         if (randomWord.includes(guessEl.value)) { //if the guess is in the randomWord
-            
+
         }
     } else if (guessEl.length > 1 || guessEl=== null || isNaN(guessEl) === false) {
         messageEl.innerHTML = 'Please enter a SINGLE LETTER'; 
@@ -151,23 +167,9 @@ function guessLetterEventHandler() {
 
 
 
-// function makeAGuess() {
-//     verifyGuesses();
-//     while (guess.length === 1) {
-//         correctGuesses();
-//     }
 
-// }
-// guesses();
 
-// function guesses() { //verify guesses (are they numbers, just 1 letter, etc.)
-//     if (guess.length === 1) {
-//         correctGuess();
-//     } else { 
-//         verifyGuesses(); 
-//     }
-// maxMistakes--;
-// } 
+/
 
 function correctGuess() {
     for (let j = 0; j < randomWord.length; j++) {
@@ -190,19 +192,7 @@ function verifyGuess() {
 }
 verifyGuess();
 
-//********************Another version I did
-// function verifyGuess('singleLett') 
-    //   let singleLett = guess.value;
-    //   if (singleLett.length === 1) {
-    //     //undergo the function that takes it
-    //   } else if (singleLett.length > 1 || singleLett === null ) {
-    //     alert('Please enter a SINGLE letter')
-    //   } else if (isNaN(singleLett) === false) {
-    //     alert('Please enter a LETTER ')
-    //   }
-       
-    // }
-    // console.log(verifyGuess(e));
+
 
 function trackMistakes() {
     if (userMistakes < maxMistakes ) {

@@ -1,3 +1,57 @@
-header {
-    
+/* * {
+    box-sizing: content-box;
 }
+
+body {
+    display: flex; 
+    display: grid;
+    flex-direction: column; 
+    height: 100vh;
+    grid-gap: 5px;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-areas:
+    "title title title title"
+    "fruit veg snack dishes"
+    "images images blank blank"
+    "footer footer footer footer"; 
+}
+
+.header {
+    grid-area: title;
+    text-align: center;
+}
+
+/* .category {
+    display: flex;
+    flex-direction: column;
+} */
+/* 
+#fruit {
+
+    grid-area: fruit;
+}
+
+#veg {
+    grid-area: veg;
+}
+
+#snack {
+    grid-area: snack;
+}
+
+#dishes {
+    grid-area: dishes;
+}
+
+.images {
+    grid-area: images;
+}
+
+.box {
+    grid-area: blank;
+}
+
+.footer {
+    grid-area: footer;
+}  */
