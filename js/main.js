@@ -31,11 +31,11 @@ let fillInBlanksEl = document.getElementById('answer');
 // document.getElementById('snack').addEventListener('click', selectCategory);
 // document.getElementById('dishes').addEventListener('click', selectCategory);
 
-//1 event listener for enter a letter
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
 
-//1 event listener for reset button
-// document.getElementById('reset').addEventListener('click', initialize);
+document.getElementById('reset').addEventListener('click', initialize);
+
+document.querySelector('.one').src = "img/emptyHangman.png";
 
 /*-------FUNCTIONS--------*/ 
 initialize();
@@ -49,11 +49,9 @@ function initialize() {
 
     // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase();  
     // selectedCategory(); //choose a category
-
-    // let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
     guessedLetters = []; //don't redeclare --> just assign
-    let wrongGuesses = 0; //game just started - no mistakes yet
-    let answerWord = [];
+    wrongGuesses = 0; //game just started - no mistakes yet
+    answerWord = [];
     render();
 }
 
@@ -116,13 +114,22 @@ function guessLetterEventHandler() {
     letter.innerHTML = null; //clears input box so user can enter in a new letter
 }
 
-
 function changeImages() {
-
-    let wrongGuesses = 6;
-    for (i = 0; i = 6; i++) {
-
-    }
+    if (wrongGuesses === 0) { //empty
+        document.querySelector('.one').src = "img/emptyHangman.png";
+    } else if (wrongGuesses === 1) { //head
+        document.querySelector('.two').src = "img/headHangman.png";
+    } else if (wrongGuesses === 2) { //body
+        document.querySelector('.three').src = "img/bodyHangman.png";
+    } else if (wrongGuesses === 3) { //1 arm
+        document.querySelector('.four').src = "img/oneArmHangman.png";
+    } else if (wrongGuesses === 4) { //2 arms
+        document.querySelector('.five').src = "img/twoArmHangman.png";
+    } else if (wrongGuesses === 5) { //1 leg
+        document.querySelector('.six').src = "img/oneFootHangman.png";
+    } else if (wrongGuesses === 6) { //full hangman
+        document.querySelector('.seven').src = "img/fullHangman.png";
+    } 
 }
 
 
