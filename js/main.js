@@ -85,13 +85,16 @@ function guessLetterEventHandler() {
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
+}
+
+function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
-    messageEl.innerHTML = null; //not sure about this code
-    letter.innerHTML = null; //look through this again too
+    messageEl.innerHTML = null;
+    letter.innerHTML = null;
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
       console.log('Please enter a single letter');
-      messageEl.innerHTML = 'Please enter a single letter';
-      letter = null; //look through this again
+      messageEl.innerText = 'Please enter a single letter';
+      letter = null;
     } else if (letter.length === 1) {
         console.log(letter);
         guessedLetters.push(letter);
@@ -101,22 +104,26 @@ function guessLetterEventHandler() {
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             console.log('Good guess!');
-            messageEl.innerHTML = 'Good guess!';
-            letter = null; //check this line of code again
-            renderAnswerHTML();
-          }
-        }
-
-        } else {
-            console.log('Try again!')
-            messageEl.innerText = 'Try again!'
+            messageEl.innerText = 'Good guess!';
             letter = null;
-            wrongGuesses++;
-            changeImages();
+            renderAnswerHTML();
+            }
+        }
+    } else {
+        console.log('Try again!')
+        messageEl.innerText = 'Try again!'
+        letter = null;
+        wrongGuesses++;
+        changeImages();
         }
     messageEl.innerHTML = null;
-    letter = null; //clears input box so user can enter in a new letter
-}
+    letter.innerHTML = null; //clears input box so user can enter in a new letter
+} 
+
+
+
+
+
 
 function changeImages() {
     if (wrongGuesses === 0) { //empty
@@ -213,12 +220,12 @@ function changeImages() {
 //                 messageEl.innerHTML = 'Good guess!';
 //                 letter = null;
 //                 renderAnswerHTML();
-//             } else {
-//                 console.log('Try again!');
-//                 messageEl.innerHTML = 'Try again!';
-//                 letter = null;
-//                 wrongGuesses++;
-//                 changeImages();
+//     } else {
+//         console.log('Try again!');
+//         messageEl.innerHTML = 'Try again!';
+//         letter = null;
+//         wrongGuesses++;
+//         changeImages();
 //             }
 //         }
 
@@ -226,3 +233,35 @@ function changeImages() {
 //     messageEl.innerHTML = null;
 //     letter = null;
 // }
+
+// let letter = guessEl.value.toUpperCase();
+//     messageEl.innerHTML = null; //not sure about this code
+//     letter.innerHTML = null; //look through this again too
+//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
+//       console.log('Please enter a single letter');
+//       messageEl.innerHTML = 'Please enter a single letter';
+//       letter = null; //look through this again
+//     } else if (letter.length === 1) {
+//         console.log(letter);
+//         guessedLetters.push(letter);
+//         addLetterEl.innerHTML = guessedLetters.join(' , ');
+//         console.log(guessedLetters);
+
+//         for (let i = 0; i < randomWord.length; i++) {
+//           if (randomWord[i].includes(letter)) {
+//             console.log('Good guess!');
+//             messageEl.innerHTML = 'Good guess!';
+//             letter = null; //check this line of code again
+//             renderAnswerHTML();
+//           }
+//         }
+
+//         } else {
+//             console.log('Try again!')
+//             messageEl.innerText = 'Try again!'
+//             letter = null;
+//             wrongGuesses++;
+//             changeImages();
+//         }
+//     messageEl.innerHTML = null;
+//     letter = null; //clears input box so user can enter in a new letter
