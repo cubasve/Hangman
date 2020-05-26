@@ -1,5 +1,5 @@
 /*-------CONSTANTS--------*/ 
-// const fruitArray = ['apple', 'banana', 'pear', 'grape', 'blueberry', 'peach', 'honeydew', 'strawberry', 'orange'];
+// const fruitArray = ['apple', 'banana', 'pear', 'grape', 'blueberry', 'peach', 'honeydew', 'orange'];
 // const vegArray = ['kale', 'potato', 'onion', 'pepper', 'tomato', 'squash', 'carrot', 'celery', 'beet', 'broccoli', 'spinach', 'zucchini' ];
 // const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chips', 'muffin', 'biscuit' ];
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza', 'kebab', 'falafel', 'burger'];
@@ -9,7 +9,7 @@ const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza'
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
 
-let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
+let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); //default
 // let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
 let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
@@ -24,16 +24,32 @@ let addLetterEl = document.getElementById('guessedLetters');
 
 /*-------EVENT LISTENERS--------*/ 
 // 4 event listeners for each category
-// document.getElementById('fruit').addEventListener('click', selectCategory);
-// document.getElementById('veg').addEventListener('click', selectCategory);
-// document.getElementById('snack').addEventListener('click', selectCategory);
-// document.getElementById('dishes').addEventListener('click', selectCategory);
+// document.getElementById('fruit').addEventListener('click', chooseFruitArray);
+// document.getElementById('veg').addEventListener('click', chooseVegArray);
+// document.getElementById('snack').addEventListener('click', chooseSnackArray);
+// document.getElementById('dishes').addEventListener('click', chooseFoodDishArray);
 
+//1 event listener to input a letter
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
 
+//1 event listener to restart the game
 document.getElementById('reset').addEventListener('click', initialize);
 
 /*-------FUNCTIONS--------*/ 
+
+// function chooseFruitArray() {
+//     let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase(); 
+// }
+// function chooseVegArray() {
+//     let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase(); 
+// }
+// function chooseSnackArray() {
+//     let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase(); 
+// }
+// function chooseFoodDishArray() {
+//     let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); 
+// }
+
 initialize();
 
 function initialize() {
@@ -45,7 +61,7 @@ function initialize() {
 
     // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase();  
     // selectedCategory(); //choose a category
-    let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
+    // let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); //already defined in global scope - no need
     guessedLetters = []; //don't redeclare --> just assign
     wrongGuesses = 0; //game just started - no mistakes yet
     answerWord = [];
@@ -80,14 +96,13 @@ function renderAnswerHTML() {
 //answerWord = ___ ___ ___ ___ ___ ___
 //answerHTML: changes the answerWord as the user enters a guessedLetters
 
+
+
 function guessLetterEventHandler() {
     //validate that 1 letter was put in
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
-}
-
-function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
     messageEl.innerHTML = null;
     letter.innerHTML = null;
@@ -200,68 +215,3 @@ function changeImages() {
 
     //     }
     // }
-
-
-// function guessLetterEventHandler() {
-//     let letter = guessEl.value.toUpperCase();
-//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-//         console.log('Please enter a single letter');
-//         messageEl.innerHTML = 'Please enter a single letter';
-//         letter = null;
-//     } else if (letter.length === 1) {
-//         console.log(letter);
-//         guessedLetters.push(letter);
-//         addLetterEl.innerHTML = guessedLetters.join(' , ');
-//         console.log(guessedLetters);
-
-//         for (let i = 0; i < randomWord.length; i++) {
-//             if (randomWord[i].includes(letter)) {
-//                 console.log('Good guess!');
-//                 messageEl.innerHTML = 'Good guess!';
-//                 letter = null;
-//                 renderAnswerHTML();
-//     } else {
-//         console.log('Try again!');
-//         messageEl.innerHTML = 'Try again!';
-//         letter = null;
-//         wrongGuesses++;
-//         changeImages();
-//             }
-//         }
-
-//     }
-//     messageEl.innerHTML = null;
-//     letter = null;
-// }
-
-// let letter = guessEl.value.toUpperCase();
-//     messageEl.innerHTML = null; //not sure about this code
-//     letter.innerHTML = null; //look through this again too
-//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-//       console.log('Please enter a single letter');
-//       messageEl.innerHTML = 'Please enter a single letter';
-//       letter = null; //look through this again
-//     } else if (letter.length === 1) {
-//         console.log(letter);
-//         guessedLetters.push(letter);
-//         addLetterEl.innerHTML = guessedLetters.join(' , ');
-//         console.log(guessedLetters);
-
-//         for (let i = 0; i < randomWord.length; i++) {
-//           if (randomWord[i].includes(letter)) {
-//             console.log('Good guess!');
-//             messageEl.innerHTML = 'Good guess!';
-//             letter = null; //check this line of code again
-//             renderAnswerHTML();
-//           }
-//         }
-
-//         } else {
-//             console.log('Try again!')
-//             messageEl.innerText = 'Try again!'
-//             letter = null;
-//             wrongGuesses++;
-//             changeImages();
-//         }
-//     messageEl.innerHTML = null;
-//     letter = null; //clears input box so user can enter in a new letter
