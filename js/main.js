@@ -25,14 +25,13 @@ let fillInBlanksEl = document.getElementById('answer');
 
 /*-------EVENT LISTENERS--------*/ 
 //Event listeners for each click:
-//4 event listeners for each category
+// 4 event listeners for each category
 // document.getElementById('fruit').addEventListener('click', selectCategory);
 // document.getElementById('veg').addEventListener('click', selectCategory);
 // document.getElementById('snack').addEventListener('click', selectCategory);
 // document.getElementById('dishes').addEventListener('click', selectCategory);
 
 //1 event listener for enter a letter
-// guessEl.addEventListener('click', guessLetterEventHandler); - not on letterBox, on letterButton
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
 
 //1 event listener for reset button
