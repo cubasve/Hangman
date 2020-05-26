@@ -8,7 +8,7 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
 
 2. VARIABLES (APP'S STATE)
     - Choose a random word from the array --> randomWord = foodArray[Math.floor(Math.random() * array.length)];
-    - guessedLetters: adds letters the player already guessed --> an array
+    - guessedLetters: adds letters the player already guessed into the array 
     - answer: __ __ __ __ --> the random word in dashes/underscores
     - mistakes: tracks the player's wrong guesses
 
@@ -19,51 +19,41 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
     - guessedLetters
 
 
-
 4. EVENT LISTENERS
     - Add letter button
     - Reset/initialize button
 
 
 5. FUNCTIONS
+
     A. Initialize()
     - Resets the game
-    - Assign game's variables: randomWord, guessedLetters, answer, mistakes
+    - Assign game's variables: 
+        - randomWord = foodArray[Math.floor(Math.random() * array.length)];
+        - guessedLetters = [] --> empty array where letters will be added
+        - answer = [] --> empty array that will have randomWord's letter converted to underscores
+        - mistakes = 0 --> game just started, player has no mistakes
     - Call render()
 
+
     B. Render()
-    - answer is an empty array --> answer = [];
-    - Loop through each letter of randomWord, and replace it with an underline/dash instead
+    - answer = [];
+    - Use for loop to iterate through each letter of randomWord, and replace it with an underline/dash instead
+        - answer.replace([i], '__')
     - Use .join(' ') to separate the underscores
+
 
     C. verifyGuess()
     - If the guess !== 1, === null, or is a number (isNaN()), tell the player using messageEl
     - If the guess.length is 1, add the guess onto the guessedLetters array
-    - Want the user to see what letters they have chosen already: 
-
+        - If correctGuess : renderAnswerHTML() --> ask them to guess again
+        - If incorrectGuess: add a body part to the hangman --> add a mistake (maximum of 6) --> ask them to guess again
 
 
     D. renderAnswerHTML()
     - answerHTML = []; --> an empty array
-    - Loop through each letter of the randomWord
+    - Use for loop to iterate through each letter of the randomWord
     - If the guessedLetters array has a letter of the randomWord, add it onto answerHTML
     - If the guessedLetters array DOES NOT have a letter of the randomWord, add an underscores
     - Use .join(' ') to separate the underscores
 
-   
-
-
-
-
-
-
-1. Array of random words 
-    - Words are strings 
-    - All words have the same category (ex. food, celebrity, cities, etc.)
-    - foodArray = ['apple', 'orange', 'pear', 'banana'];
-
-2. Choose a random word from the array
-    - randomWord = foodArray[Math.floor(Math.random() * array.length)];
-    
-3. Turn the letters of the randomWord into dashes/underscores
-    - 

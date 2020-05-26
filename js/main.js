@@ -4,16 +4,15 @@
 // const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chips', 'muffin', 'biscuit' ];
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza', 'kebab', 'falafel', 'burger'];
 
-// const categories = [fruitArray, vegArray, snackArray, foodDishArray];
 
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
 
-let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); //default
+let randomWord;
 // let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
 let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
-let wrongGuesses; //just declare, didn't assign
+let wrongGuesses; 
 
 
 /*-------CACHED ELEMENT REFERENCES--------*/ 
@@ -23,11 +22,6 @@ let fillInBlanksEl = document.getElementById('answer');
 let addLetterEl = document.getElementById('guessedLetters');
 
 /*-------EVENT LISTENERS--------*/ 
-// 4 event listeners for each category
-// document.getElementById('fruit').addEventListener('click', chooseFruitArray);
-// document.getElementById('veg').addEventListener('click', chooseVegArray);
-// document.getElementById('snack').addEventListener('click', chooseSnackArray);
-// document.getElementById('dishes').addEventListener('click', chooseFoodDishArray);
 
 //1 event listener to input a letter
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
@@ -36,19 +30,6 @@ document.getElementById('letterButton').addEventListener('click', guessLetterEve
 document.getElementById('reset').addEventListener('click', initialize);
 
 /*-------FUNCTIONS--------*/ 
-
-// function chooseFruitArray() {
-//     let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase(); 
-// }
-// function chooseVegArray() {
-//     let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase(); 
-// }
-// function chooseSnackArray() {
-//     let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase(); 
-// }
-// function chooseFoodDishArray() {
-//     let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); 
-// }
 
 initialize();
 
@@ -59,9 +40,8 @@ function initialize() {
     //sets wrong guesses to 0
     //render()
 
-    // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase();  
-    // selectedCategory(); //choose a category
-    // let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); //already defined in global scope - no need
+    //already declared in the global scope - don't redeclare them, just assign them
+    randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); 
     guessedLetters = []; //don't redeclare --> just assign
     wrongGuesses = 0; //game just started - no mistakes yet
     answerWord = [];
@@ -119,7 +99,7 @@ function guessLetterEventHandler() {
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             console.log('Good guess!');
-            messageEl.innerText = 'Good guess!';
+            messageEl.innerHTML = 'Good guess!';
             letter = null;
             renderAnswerHTML();
             }
