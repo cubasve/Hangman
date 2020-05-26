@@ -16,6 +16,7 @@ Have fun!
 
 
 **Getting Started:** Game link
+https://cubasve.github.io/Hangman/
 
 
 **Next Steps: Planned future enhancements**
