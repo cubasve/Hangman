@@ -11,33 +11,47 @@
 <body>
     <div class="header">
         <h1>HANGMAN</h1>
-        <h2>Select a category</h2>
-    </div>
-    <div class="category">
-        <p id="fruit">FRUITS</p>
-        <p id="veg">VEGETABLES</p>
-        <p id="snack">SNACKS</p>
-        <p id="dishes">FOOD DISHES</p>
-    </div>
-    <div class="images">
-        <img class="one empty" src="img/emptyHangman.png" alt="emptyHangman">
+        <!-- <img class="one empty" src="img/emptyHangman.png" alt="emptyHangman">
         <img class="two head" src="img/headHangman.png" alt="headHangman">
         <img class="three body" src="img/bodyHangman.png" alt="bodyHangman">
         <img class="four arm" src="img/oneArmHangman.png" alt="oneArmHangman">
         <img class="five two-arms" src="img/twoArmHangman.png" alt="twoArmsHangman">
         <img class="six foot" src="img/oneFootHangman.png" alt="oneFootHangman">
-        <img class="seven dead" src="img/fullHangman.png" alt="fullHangman">
+        <img class="seven dead" src="img/fullHangman.png" alt="fullHangman"> -->
     </div>
-    <br>
+    
+    <div class="category">
+        <h2>Select a category</h2>
+        <button id="fruit">FRUITS</button>
+        <br>
+        <button id="veg">VEGETABLES</button>
+        <br>
+        <button id="snack">SNACKS</button>
+        <br>
+        <button id="dishes">FOOD DISHES</button>
+    </div>
+
+    <div class="images">
+        <!-- <img class="one empty" src="img/emptyHangman.png" alt="emptyHangman">
+        <img class="two head" src="img/headHangman.png" alt="headHangman">
+        <img class="three body" src="img/bodyHangman.png" alt="bodyHangman">
+        <img class="four arm" src="img/oneArmHangman.png" alt="oneArmHangman">
+        <img class="five two-arms" src="img/twoArmHangman.png" alt="twoArmsHangman">
+        <img class="six foot" src="img/oneFootHangman.png" alt="oneFootHangman">
+        <img class="seven dead" src="img/fullHangman.png" alt="fullHangman"> -->
+    </div>
+
     <div class=box></div>
         <p id="answer"></p>
         <button id="reset">RESET GAME</button>
     </div>
+
     <div class="footer">
         <p id="guessedLetters">You have __ out of 6 tries left!</p>
         <p id="message"></p>
         <br>
         <input id="letterBox"></input><button id="letterButton">ENTER A LETTER</button>
     </div>
+
 </body>
 </html>

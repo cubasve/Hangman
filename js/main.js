@@ -42,6 +42,19 @@ let fillInBlanks = document.getElementById('answer');
 
 
 /*-------EVENT LISTENERS--------*/ 
+//Event listeners for each click:
+//4 event listeners for each category
+document.getElementById('fruit').addEventListener('click', selectedCategory);
+document.getElementById('veg').addEventListener('click', selectedCategory);
+document.getElementById('snack').addEventListener('click', selectedCategory);
+document.getElementById('dishes').addEventListener('click', selectedCategory);
+
+//1 event listener for enter a letter
+document.getElementById('letterButton').addEventListener('click', //enter function);
+
+//1 event listener for reset button
+document.getElementById('reset').addEventListener('click', initialize);
+
 
 // document.querySelector('div').addEventListener('click', ) //incomplete
 
@@ -60,6 +73,8 @@ function initialize() {
     //sets guessed letters to empty array
     //sets wrong guesses to 0
     //render()
+
+    // let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();  
     selectedCategory(); //choose a category
     let guessedLetters = []; //empty array - player hasn't started guessing yet
     letWrongGuesses = 0; //game just started - no mistakes yet
