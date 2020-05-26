@@ -74,7 +74,7 @@ function initialize() {
     //sets wrong guesses to 0
     //render()
 
-    // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase());  
+    // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase();  
     selectedCategory(); //choose a category
     let guessedLetters = []; //empty array - player hasn't started guessing yet
     letWrongGuesses = 0; //game just started - no mistakes yet
@@ -135,7 +135,7 @@ function render() {
 
     guessLetterEventHandler(); //verifies the input first
     
-    let answerWord.length = randomWord.length;
+    // let answerWord.length = randomWord.length;
     for (let i = 0; i < answerWord.length; i++) {
         if (guessEl.value === randomWord[i]) {
             answerWord.innerHTML = guessLetters.value;
@@ -156,20 +156,48 @@ function render() {
         }
     }
 }
+
 function guessLetterEventHandler() {
     //validate that 1 letter was put in
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
-    if (guessEl.length === 1) {
-        guessedLetters.push(guessEl.value); //adds it to the end of the array
-        messageEl.innerHTML = 'Good guess!';
-    } else if (guessEl.length > 1 || guessEl=== null || isNaN(guessEl) === false) {
-        messageEl.innerHTML = 'Please enter a SINGLE LETTER'; 
-        wrongGuesses++;
+
+    if (guessEl.length !== 1 || guessEl === null || isNaN(guessEl) === false) {
+        messageEl.innerHTML = 'Please enter a SINGLE LETTER';
+    } else {
+        guessedLetters.push(guessEl.value);
+        if (randomWord[i].includes(guessEl.value)) { //randomWord[i] === guessEl.value OR randomWord[i].includes(guessEl.value)
+            answerWord.push(guessEl.value);
+            messageEl.innerHTML = 'Good guess!';
+            fillInBlanksEl.innerHTML = answerWord.join(' ');
+        } else {
+            messageEl = 'Try again!'
+            wrongGuesses++;
+            changeImages();
+        }
     }
 }
 
+function changeImages() {
+
+    let wrongGuesses = 6;
+    for (i = 0; i = 6; i++) {
+
+    }
+}
+
+function renderAnswerHTML() {
+    let answerHTML = [];
+    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
+        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
+            answerHTML.push(randomWord[i]);
+        } else {
+            answerHTML.push('___');
+        }
+    }
+    fillInBlanksEl.innerHTML = answerHTML.join(' ');
+}
 
 //if you use answer word array and letter is correct, adjust the array
 //if letter was not a correct guess, increment wrong guesses
@@ -196,41 +224,8 @@ function renderAnswerHTML() {
     fillInBlanksEl.innerHTML = answerHTML.join(' ');
 }
 
+
+
 // if (guessedLetter[guessedLetter.length-1].includes(answerWord[i])) {
 //     answerWord.push(guessedLetter[guessedLetters.length-1]);
-//     messageEl.innerHTML = 'Good guess!';
-
-
-/* ------------FUNCTIONS I WORKED ON BEFORE------------------------------ */
-function correctGuess() {
-    for (let j = 0; j < randomWord.length; j++) {
-        if (randomWord[j] === guess) {   //if (randomWord[i] === guess) {answer[i].push(guess)}
-            answer[j] = guess.value;
-        } else {
-            alert('Try again with another letter. ');
-            userMistakes++;
-        }
-    }
-}
-correctGuess();
-
-function verifyGuess() {
-    if (guess.length > 1 || guess.value === null) {
-        alert('Please enter a SINGLE letter');
-    } else if (isNaN(guess.value) === false) { //returns true if value is NaN - can also use typeof letter !== 'number'
-        alert('Please enter a LETTER');
-    } 
-}
-verifyGuess();
-
-
-
-function trackMistakes() {
-    if (userMistakes < maxMistakes ) {
-        //continue to guess
-    } else if  (userMistakes === maxMistakes) {
-        alert('Last Try!')
-    } else {
-        //end game
-    }
-}
+//     messageEl.innerHTML = 'Good guess!'
