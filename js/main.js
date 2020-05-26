@@ -2,29 +2,27 @@
 // const fruitArray = ['apple', 'banana', 'pear', 'grape', 'blueberry', 'peach', 'honeydew', 'strawberry', 'orange'];
 // const vegArray = ['kale', 'potato', 'onion', 'pepper', 'tomato', 'squash', 'carrot', 'celery', 'beet', 'broccoli', 'spinach', 'zucchini' ];
 // const snackArray = ['popcorn', 'chocolate', 'candy', 'pretzel', 'granola', 'chips', 'muffin', 'biscuit' ];
-const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'souvlaki', 'pizza', 'kebab', 'falafel', 'burger'];
+const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza', 'kebab', 'falafel', 'burger'];
 
 // const categories = [fruitArray, vegArray, snackArray, foodDishArray];
 
 
 /*-------APP'S STATE (VARIABLES)--------*/ 
-// let selectedCategory;
+
 let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
 // let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let guessedLetters; //add letters the player already guessed
 let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
 let wrongGuesses; //just declare, didn't assign
-//message or error message
-//if you guessed all letters
 
 
 /*-------CACHED ELEMENT REFERENCES--------*/ 
 let guessEl = document.getElementById('letterBox'); //get value of user's input
 let messageEl = document.getElementById('message');
 let fillInBlanksEl = document.getElementById('answer');
+let addLetterEl = document.getElementById('guessedLetters');
 
 /*-------EVENT LISTENERS--------*/ 
-//Event listeners for each click:
 // 4 event listeners for each category
 // document.getElementById('fruit').addEventListener('click', selectCategory);
 // document.getElementById('veg').addEventListener('click', selectCategory);
@@ -34,8 +32,6 @@ let fillInBlanksEl = document.getElementById('answer');
 document.getElementById('letterButton').addEventListener('click', guessLetterEventHandler);
 
 document.getElementById('reset').addEventListener('click', initialize);
-
-document.querySelector('.one').src = "img/emptyHangman.png";
 
 /*-------FUNCTIONS--------*/ 
 initialize();
@@ -49,6 +45,7 @@ function initialize() {
 
     // let randomWord = (categories[i][Math.floor(Math.random() * categories[i].length)].toUpperCase();  
     // selectedCategory(); //choose a category
+    let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
     guessedLetters = []; //don't redeclare --> just assign
     wrongGuesses = 0; //game just started - no mistakes yet
     answerWord = [];
@@ -89,29 +86,36 @@ function guessLetterEventHandler() {
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
     let letter = guessEl.value.toUpperCase();
-    // messageEl.innerHTML = null;
-    letter.innerHTML = null;
+    messageEl.innerHTML = null; //not sure about this code
+    letter.innerHTML = null; //look through this again too
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
       console.log('Please enter a single letter');
-      messageEl.innerHTML = 'Please enter a SINGLE LETTER';
+      messageEl.innerHTML = 'Please enter a single letter';
+      letter = null; //look through this again
     } else if (letter.length === 1) {
         console.log(letter);
         guessedLetters.push(letter);
+        addLetterEl.innerHTML = guessedLetters.join(' , ');
+        console.log(guessedLetters);
+
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             console.log('Good guess!');
             messageEl.innerHTML = 'Good guess!';
+            letter = null; //check this line of code again
             renderAnswerHTML();
           }
         }
+
         } else {
             console.log('Try again!')
-            messageEl.innerHTML = 'Try again!'
+            messageEl.innerText = 'Try again!'
+            letter = null;
             wrongGuesses++;
             changeImages();
         }
     messageEl.innerHTML = null;
-    letter.innerHTML = null; //clears input box so user can enter in a new letter
+    letter = null; //clears input box so user can enter in a new letter
 }
 
 function changeImages() {
@@ -189,3 +193,36 @@ function changeImages() {
 
     //     }
     // }
+
+
+// function guessLetterEventHandler() {
+//     let letter = guessEl.value.toUpperCase();
+//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
+//         console.log('Please enter a single letter');
+//         messageEl.innerHTML = 'Please enter a single letter';
+//         letter = null;
+//     } else if (letter.length === 1) {
+//         console.log(letter);
+//         guessedLetters.push(letter);
+//         addLetterEl.innerHTML = guessedLetters.join(' , ');
+//         console.log(guessedLetters);
+
+//         for (let i = 0; i < randomWord.length; i++) {
+//             if (randomWord[i].includes(letter)) {
+//                 console.log('Good guess!');
+//                 messageEl.innerHTML = 'Good guess!';
+//                 letter = null;
+//                 renderAnswerHTML();
+//             } else {
+//                 console.log('Try again!');
+//                 messageEl.innerHTML = 'Try again!';
+//                 letter = null;
+//                 wrongGuesses++;
+//                 changeImages();
+//             }
+//         }
+
+//     }
+//     messageEl.innerHTML = null;
+//     letter = null;
+// }
