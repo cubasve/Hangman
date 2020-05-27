@@ -31,26 +31,6 @@ document.getElementById('reset').addEventListener('click', initialize);
 /*-------FUNCTIONS--------*/ 
 
 
-
-// function winOrLose() {
-//     for (i = 0; i < randomWord.length; i++) {
-//         if 
-//     }
-
-
-
-
-//     for (let i = 0; i < randomWord.length; i++) {
-//         if (guessedLetters.)
-//     }
-// }
-
-// function winOrLose() {
-//     for (let j = 0; j < guessedLetters.length; j++) {
-
-//     }
-// }
-
 initialize();
 
 function initialize() {
@@ -67,6 +47,7 @@ function initialize() {
     answerWord = [];
     addLetterEl.innerHTML = null;
     guessEl.value = null;
+    messageEl.innerHTML = null;
     render();
 }
 
@@ -100,12 +81,8 @@ function renderAnswerHTML() {
 //answerWord = ___ ___ ___ ___ ___ ___
 //answerHTML: changes the answerWord as the user enters a guessedLetters
 
+
 function guessLetterEventHandler() {
-    //validate that 1 letter was put in
-    //add letter to guessed letters list
-    //(if you use answer word array and letter is correct, adjust array)
-    //if letter was not a correct guess, increment wrong guesses
-    
     let letter = guessEl.value.toUpperCase();
     messageEl.innerHTML = null;
     guessEl.value = null;
@@ -114,32 +91,80 @@ function guessLetterEventHandler() {
         console.log('Please enter a single letter'); //to test 
         messageEl.innerHTML = 'Please enter a single letter';
         letter = null; 
-    } else if (letter.length === 1) {
-        console.log(letter);
+        return;
+    } 
+
+    if (letter.length === 1) {
+        // console.log(letter);
         guessedLetters.push(letter);
         addLetterEl.innerHTML = guessedLetters.join(' , ');
-        console.log(guessedLetters);
-        letter = null;
-        renderAnswerHTML();
+        // console.log(guessedLetters);
 
-        // for (let i = 0; i < randomWord.length; i++) {
-        //   if (randomWord[i].includes(letter)) {
-        //     // console.log('Good guess!');
-        //     renderAnswerHTML();
-        //     messageEl.innerHTML = 'Good guess!';
-        //     guessEl.value = null;
-        //   } else {
-        //     console.log('Try again!')
-        //     messageEl.innerHTML = 'Try again!'
-        //     guessEl.value = null;
-        //     wrongGuesses++;
-        //     hangMan();
-        //   }
-        // } 
+        for (let i = 0; i < randomWord.length; i++) {
+          if (randomWord[i].includes(letter)) {
+            renderAnswerHTML();
+            // messageEl.innerHTML = 'Good guess!';
+            // letter = null;
+            // renderAnswerHTML();
+          } else {
+            // messageEl.innerHTML = 'Try again!';
+            // letter = null;
+            wrongGuesses++;
+          }
+        }
+    }
     messageEl.innerHTML = null;
     letter = null; //clears input box so user can enter in a new letter
-    }
-} 
+}
+
+
+
+
+
+
+
+
+
+// function guessLetterEventHandler() {
+//     //validate that 1 letter was put in
+//     //add letter to guessed letters list
+//     //(if you use answer word array and letter is correct, adjust array)
+//     //if letter was not a correct guess, increment wrong guesses
+    
+//     let letter = guessEl.value.toUpperCase();
+//     messageEl.innerHTML = null;
+//     guessEl.value = null;
+
+//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
+//         console.log('Please enter a single letter'); //to test 
+//         messageEl.innerHTML = 'Please enter a single letter';
+//         letter = null; 
+//     } else if (letter.length === 1) {
+//         console.log(letter);
+//         guessedLetters.push(letter);
+//         addLetterEl.innerHTML = guessedLetters.join(' , ');
+//         console.log(guessedLetters);
+//         letter = null;
+//         renderAnswerHTML();
+
+//         // for (let i = 0; i < randomWord.length; i++) {
+//         //   if (randomWord[i].includes(letter)) {
+//         //     // console.log('Good guess!');
+//         //     renderAnswerHTML();
+//         //     messageEl.innerHTML = 'Good guess!';
+//         //     guessEl.value = null;
+//         //   } else {
+//         //     console.log('Try again!')
+//         //     messageEl.innerHTML = 'Try again!'
+//         //     guessEl.value = null;
+//         //     wrongGuesses++;
+//         //     hangMan();
+//         //   }
+//         // } 
+//     messageEl.innerHTML = null;
+//     letter = null; //clears input box so user can enter in a new letter
+//     }
+// } 
 
 function hangMan() {
     if (wrongGuesses === 0) { //empty
