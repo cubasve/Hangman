@@ -1,75 +1,64 @@
-/* * {
+* {
     box-sizing: content-box;
 }
 
 body {
     display: grid;
     height: 100vh;
-    grid-gap: 5px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    grid-template-rows: 50px 1fr 2fr;
     grid-template-areas:
-    "category title"
-    "images box"
-    "footer footer"; 
+    "header"
+    "image"
+    "box";
 }
 
 .header {
-    grid-area: title;
-    text-align: center;
+    grid-area: header;
+    margin-top: 0px;
+    
 }
 
-.category {
-    grid-area: category;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-} 
-
-/* #fruit {
-    display: flex;
-    flex-direction: column;
-    grid-area: fruit;
-}
-
-#veg {
-    display: flex;
-    flex-direction: column;
-    grid-area: veg;
-}
-
-#snack {
-    display: flex;
-    flex-direction: column;
-    grid-area: snack;
-}
-
-#dishes {
-    display: flex;
-    flex-direction: column;
-    grid-area: dishes;
-} 
-
-.images {
-    grid-area: images;
+.image {
+    grid-area: image;
+    width: 100%;
+    height: 100%;
 }
 
 .box {
     grid-area: box;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
 }
 
-.footer {
-    grid-area: footer;
-}  */
+p {
+    font-size: 18px;
+}
+
+#answer {
+    font-weight: bold;
+}
+
+#message {
+    font-weight: bold;
+    color: maroon;
+    font-size: 20px;
+}
+
+#letterBox {
+    margin: 0 auto;
+}
 
 button {
     padding: 10px;
     background-color: black;
     color: white;
     border-radius: 10px;
-    font-size:;
+    margin: 0 auto;
 }
 
 button:hover {

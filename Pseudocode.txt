@@ -1,13 +1,12 @@
 Pseudocode for Hangman
 
 1. CONSTANTS
-    - Array of random words with the same category 
-    - Ex. Celebrities, cities, food, sports, etc.
-foodArray = ['apple', 'orange', 'pear', 'banana'];
+    - Array of random words with the same category --> foodArray = ['apple', 'orange', 'pear', 'banana'];
+    - Ex. Topics: Celebrities, cities, food, sports, etc.
 
 
 2. VARIABLES (APP'S STATE)
-    - Choose a random word from the array --> randomWord = foodArray[Math.floor(Math.random() * array.length)];
+    - Choose a random word from the array --> randomWord = array[Math.floor(Math.random() * array.length)];
     - guessedLetters: adds letters the player already guessed into the array 
     - answer: __ __ __ __ --> the random word in dashes/underscores
     - mistakes: tracks the player's wrong guesses
@@ -15,8 +14,8 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
 
 3. CACHED ELEMENT REFERENCES
     - inputBoxEl: get the value of the player's input --> box.value
-    - messageEl: tells the player if they inputted something wrong in the box
-    - guessedLetters
+    - messageEl: tells the player if they entered something wrong in the box
+    - guessedLetters: updates during the course of the game
 
 
 4. EVENT LISTENERS
@@ -29,7 +28,7 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
     A. Initialize()
     - Resets the game
     - Assign game's variables: 
-        - randomWord = foodArray[Math.floor(Math.random() * array.length)];
+        - randomWord = array[Math.floor(Math.random() * array.length)];
         - guessedLetters = [] --> empty array where letters will be added
         - answer = [] --> empty array that will have randomWord's letter converted to underscores
         - mistakes = 0 --> game just started, player has no mistakes
@@ -44,7 +43,7 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
 
 
     C. verifyGuess()
-    - If the guess !== 1, === null, or is a number (isNaN()), tell the player using messageEl
+    - If the guess !== 1, === null, or is a number (isNaN()), tell the player to enter one letter using messageEl
     - If the guess.length is 1, add the guess onto the guessedLetters array
         - If correctGuess : renderAnswerHTML() --> ask them to guess again
         - If incorrectGuess: add a body part to the hangman --> add a mistake (maximum of 6) --> ask them to guess again
@@ -54,6 +53,6 @@ foodArray = ['apple', 'orange', 'pear', 'banana'];
     - answerHTML = []; --> an empty array
     - Use for loop to iterate through each letter of the randomWord
     - If the guessedLetters array has a letter of the randomWord, add it onto answerHTML
-    - If the guessedLetters array DOES NOT have a letter of the randomWord, add an underscores
+    - If the guessedLetters array DOES NOT have a letter of the randomWord, add an underscore
     - Use .join(' ') to separate the underscores
 

@@ -112,7 +112,7 @@ function guessLetterEventHandler() {
         changeImages();
         }
     messageEl.innerHTML = null;
-    letter.innerHTML = null; //clears input box so user can enter in a new letter
+    // letter.innerHTML = null; //clears input box so user can enter in a new letter
 } 
 
 
