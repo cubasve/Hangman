@@ -30,6 +30,27 @@ document.getElementById('reset').addEventListener('click', initialize);
 
 /*-------FUNCTIONS--------*/ 
 
+
+
+// function winOrLose() {
+//     for (i = 0; i < randomWord.length; i++) {
+//         if 
+//     }
+
+
+
+
+//     for (let i = 0; i < randomWord.length; i++) {
+//         if (guessedLetters.)
+//     }
+// }
+
+// function winOrLose() {
+//     for (let j = 0; j < guessedLetters.length; j++) {
+
+//     }
+// }
+
 initialize();
 
 function initialize() {
@@ -45,6 +66,7 @@ function initialize() {
     wrongGuesses = 0; //game just started - no mistakes yet
     answerWord = [];
     addLetterEl.innerHTML = null;
+    guessEl.value = null;
     render();
 }
 
@@ -63,8 +85,10 @@ function renderAnswerHTML() {
     let answerHTML = [];
     for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
         if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
+            messageEl.innerHTML = 'Good guess!';
             answerHTML.push(randomWord[i]);
         } else {
+            messageEl.innerHTML = 'Try again!';
             answerHTML.push('___');
         }
     }
@@ -76,8 +100,6 @@ function renderAnswerHTML() {
 //answerWord = ___ ___ ___ ___ ___ ___
 //answerHTML: changes the answerWord as the user enters a guessedLetters
 
-
-
 function guessLetterEventHandler() {
     //validate that 1 letter was put in
     //add letter to guessed letters list
@@ -85,8 +107,8 @@ function guessLetterEventHandler() {
     //if letter was not a correct guess, increment wrong guesses
     
     let letter = guessEl.value.toUpperCase();
-    // messageEl.innerHTML = null;
-    // letter.innerHTML = null;
+    messageEl.innerHTML = null;
+    guessEl.value = null;
 
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
         console.log('Please enter a single letter'); //to test 
@@ -97,32 +119,29 @@ function guessLetterEventHandler() {
         guessedLetters.push(letter);
         addLetterEl.innerHTML = guessedLetters.join(' , ');
         console.log(guessedLetters);
-
-        for (let i = 0; i < randomWord.length; i++) {
-          if (randomWord[i].includes(letter)) {
-            // console.log('Good guess!');
-            messageEl.innerHTML = 'Good guess!';
-            letter = null;
-            renderAnswerHTML();
-            }
-        }
-    } else {
-        console.log('Try again!')
-        messageEl.innerText = 'Try again!'
         letter = null;
-        wrongGuesses++;
-        changeImages();
-        }
+        renderAnswerHTML();
+
+        // for (let i = 0; i < randomWord.length; i++) {
+        //   if (randomWord[i].includes(letter)) {
+        //     // console.log('Good guess!');
+        //     renderAnswerHTML();
+        //     messageEl.innerHTML = 'Good guess!';
+        //     guessEl.value = null;
+        //   } else {
+        //     console.log('Try again!')
+        //     messageEl.innerHTML = 'Try again!'
+        //     guessEl.value = null;
+        //     wrongGuesses++;
+        //     hangMan();
+        //   }
+        // } 
     messageEl.innerHTML = null;
     letter = null; //clears input box so user can enter in a new letter
+    }
 } 
 
-
-
-
-
-
-function changeImages() {
+function hangMan() {
     if (wrongGuesses === 0) { //empty
         document.querySelector('.one').src = "img/emptyHangman.png";
     } else if (wrongGuesses === 1) { //head
@@ -141,6 +160,52 @@ function changeImages() {
 }
 
 
+
+
+
+
+
+
+// function guessLetterEventHandler() {
+//     //validate that 1 letter was put in
+//     //add letter to guessed letters list
+//     //(if you use answer word array and letter is correct, adjust array)
+//     //if letter was not a correct guess, increment wrong guesses
+    
+//     let letter = guessEl.value.toUpperCase();
+//     messageEl.innerHTML = null;
+//     letter.innerHTML = null;
+
+//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
+//         console.log('Please enter a single letter'); //to test 
+//         messageEl.innerHTML = 'Please enter a single letter';
+//         letter = null; 
+//     } else if (letter.length === 1) {
+//         console.log(letter);
+//         guessedLetters.push(letter);
+//         addLetterEl.innerHTML = guessedLetters.join(' , ');
+//         console.log(guessedLetters);
+//         letter = null;
+//         renderAnswerHTML();
+
+//     //     for (let i = 0; i < randomWord.length; i++) {
+//     //       if (randomWord[i].includes(letter)) {
+//     //         // console.log('Good guess!');
+//     //         messageEl.innerHTML = 'Good guess!';
+//     //         letter = null;
+//     //         renderAnswerHTML();
+//     //         }
+//     //     }
+//     // } else {
+//     //     console.log('Try again!')
+//     //     messageEl.innerText = 'Try again!'
+//     //     letter = null;
+//     //     wrongGuesses++;
+//     //     hangMan();
+//     //     }
+//     messageEl.innerHTML = null;
+//     letter = null; //clears input box so user can enter in a new letter
+// } 
 
 
 // function selectCategory() {
@@ -171,10 +236,6 @@ function changeImages() {
 //         let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
 //     }
 // }
-
-
-
-
 
 
     // let answerWord.length = randomWord.length; //Not sure about this line of code
