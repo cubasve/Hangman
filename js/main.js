@@ -225,3 +225,5 @@ function renderHangman() { //take the state and translate state into DOM
 //set all styles to display: none
 
 
+
+
