@@ -10,7 +10,7 @@ const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza'
 
 let randomWord;
 let guessedLetters; //add letters the player already guessed
-let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
+// let answerWord;      //['__', '__', '__', '__', '__', '__', '__'];
 let wrongGuesses; 
 
 
@@ -19,6 +19,14 @@ let guessEl = document.getElementById('letterBox'); //get value of user's input
 let messageEl = document.getElementById('message');
 let fillInBlanksEl = document.getElementById('answer');
 let addLetterEl = document.getElementById('guessedLetters');
+//references to images
+let emptyHangman = document.querySelector('.one.empty');
+let headHangman = document.querySelector('.two.head');
+let bodyHangman = document.querySelector('.three.body');
+let armHangman = document.querySelector('.four.arm');
+let twoArmHangman = document.querySelector('.five');
+let footHangman = document.querySelector('.six.foot');
+let fullHangman = document.querySelector('.seven.dead');
 
 /*-------EVENT LISTENERS--------*/ 
 
@@ -55,11 +63,8 @@ function render() {
     //loop through answer word and change HTML to match the contents of that array (renderAnswerHTML)
     //show image based on how many wrong guesses
     //show list of guessed letters
-    let answerWord = [];
-    for (let i = 0; i < randomWord.length; i++) {
-        answerWord.push('___');
-    }
-    fillInBlanksEl.innerHTML = answerWord.join(' ');
+    renderAnswerHTML();
+    renderHangman(); 
 }
 
 function renderAnswerHTML() {
@@ -110,6 +115,7 @@ function guessLetterEventHandler() {
             // messageEl.innerHTML = 'Try again!';
             // letter = null;
             wrongGuesses++;
+            renderHangman();
           }
         }
     }
@@ -118,71 +124,58 @@ function guessLetterEventHandler() {
 }
 
 
+function renderHangman() { //take the state and translate state into DOM
+    emptyHangman.style.display = 'none';
+    headHangman.style.display = 'none';
+    bodyHangman.style.display = 'none';
+    armHangman.style.display = 'none';
+    twoArmHangman.style.display = 'none';
+    footHangman.style.display = 'none';
+    fullHangman.style.display = 'none';
 
 
+    if (wrongGuesses === 0) { //head -->  //hide or show images
+        emptyHangman.style.display = 'block';
+    } else if (wrongGuesses === 1) { //head -->  //hide or show images
+        headHangman.style.display = 'block';
+    } else if (wrongGuesses === 2) {
+        bodyHangman.style.display = 'block';
+    } else if (wrongGuesses === 3) {
+        armHangman.style.display = 'block';
+    } else if (wrongGuesses === 4) {
+        twoArmHangman.style.display = 'block';
+    } else if (wrongGuesses === 5) {
+        footHangman.style.display = 'block';
+    } else if (wrongGuesses === 6) {
+        fullHangman.style.display = 'block';
+    }
 
-
-
-
-
-// function guessLetterEventHandler() {
-//     //validate that 1 letter was put in
-//     //add letter to guessed letters list
-//     //(if you use answer word array and letter is correct, adjust array)
-//     //if letter was not a correct guess, increment wrong guesses
-    
-//     let letter = guessEl.value.toUpperCase();
-//     messageEl.innerHTML = null;
-//     guessEl.value = null;
-
-//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-//         console.log('Please enter a single letter'); //to test 
-//         messageEl.innerHTML = 'Please enter a single letter';
-//         letter = null; 
-//     } else if (letter.length === 1) {
-//         console.log(letter);
-//         guessedLetters.push(letter);
-//         addLetterEl.innerHTML = guessedLetters.join(' , ');
-//         console.log(guessedLetters);
-//         letter = null;
-//         renderAnswerHTML();
-
-//         // for (let i = 0; i < randomWord.length; i++) {
-//         //   if (randomWord[i].includes(letter)) {
-//         //     // console.log('Good guess!');
-//         //     renderAnswerHTML();
-//         //     messageEl.innerHTML = 'Good guess!';
-//         //     guessEl.value = null;
-//         //   } else {
-//         //     console.log('Try again!')
-//         //     messageEl.innerHTML = 'Try again!'
-//         //     guessEl.value = null;
-//         //     wrongGuesses++;
-//         //     hangMan();
-//         //   }
-//         // } 
-//     messageEl.innerHTML = null;
-//     letter = null; //clears input box so user can enter in a new letter
-//     }
-// } 
-
-function hangMan() {
-    if (wrongGuesses === 0) { //empty
-        document.querySelector('.one').src = "img/emptyHangman.png";
-    } else if (wrongGuesses === 1) { //head
-        document.querySelector('.two').src = "img/headHangman.png";
-    } else if (wrongGuesses === 2) { //body
-        document.querySelector('.three').src = "img/bodyHangman.png";
-    } else if (wrongGuesses === 3) { //1 arm
-        document.querySelector('.four').src = "img/oneArmHangman.png";
-    } else if (wrongGuesses === 4) { //2 arms
-        document.querySelector('.five').src = "img/twoArmHangman.png";
-    } else if (wrongGuesses === 5) { //1 leg
-        document.querySelector('.six').src = "img/oneFootHangman.png";
-    } else if (wrongGuesses === 6) { //full hangman
-        document.querySelector('.seven').src = "img/fullHangman.png";
-    } 
 }
+//reference to each hangman elements
+//set all styles to display: none
+
+
+
+
+// function hangMan() {
+//     let wrongGuesses = 0;
+//     // if (wrongGuesses === 0) { //empty
+//     //     document.querySelector('.one').src = "img/emptyHangman.png";
+
+//     if (wrongGuesses > 0) { //head
+//         document.querySelector('.two').src = "img/headHangman.png";
+//     } else if (wrongGuesses > 1) { //body --> continue on
+//         document.querySelector('.three').src = "img/bodyHangman.png";
+//     } else if (wrongGuesses === 3) { //1 arm
+//         document.querySelector('.four').src = "img/oneArmHangman.png";
+//     } else if (wrongGuesses === 4) { //2 arms
+//         document.querySelector('.five').src = "img/twoArmHangman.png";
+//     } else if (wrongGuesses === 5) { //1 leg
+//         document.querySelector('.six').src = "img/oneFootHangman.png";
+//     } else if (wrongGuesses === 6) { //full hangman
+//         document.querySelector('.seven').src = "img/fullHangman.png";
+//     } 
+// }
 
 
 
@@ -190,47 +183,6 @@ function hangMan() {
 
 
 
-
-// function guessLetterEventHandler() {
-//     //validate that 1 letter was put in
-//     //add letter to guessed letters list
-//     //(if you use answer word array and letter is correct, adjust array)
-//     //if letter was not a correct guess, increment wrong guesses
-    
-//     let letter = guessEl.value.toUpperCase();
-//     messageEl.innerHTML = null;
-//     letter.innerHTML = null;
-
-//     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-//         console.log('Please enter a single letter'); //to test 
-//         messageEl.innerHTML = 'Please enter a single letter';
-//         letter = null; 
-//     } else if (letter.length === 1) {
-//         console.log(letter);
-//         guessedLetters.push(letter);
-//         addLetterEl.innerHTML = guessedLetters.join(' , ');
-//         console.log(guessedLetters);
-//         letter = null;
-//         renderAnswerHTML();
-
-//     //     for (let i = 0; i < randomWord.length; i++) {
-//     //       if (randomWord[i].includes(letter)) {
-//     //         // console.log('Good guess!');
-//     //         messageEl.innerHTML = 'Good guess!';
-//     //         letter = null;
-//     //         renderAnswerHTML();
-//     //         }
-//     //     }
-//     // } else {
-//     //     console.log('Try again!')
-//     //     messageEl.innerText = 'Try again!'
-//     //     letter = null;
-//     //     wrongGuesses++;
-//     //     hangMan();
-//     //     }
-//     messageEl.innerHTML = null;
-//     letter = null; //clears input box so user can enter in a new letter
-// } 
 
 
 // function selectCategory() {
