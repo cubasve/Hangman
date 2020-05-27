@@ -83,13 +83,15 @@ function guessLetterEventHandler() {
     //add letter to guessed letters list
     //(if you use answer word array and letter is correct, adjust array)
     //if letter was not a correct guess, increment wrong guesses
+    
     let letter = guessEl.value.toUpperCase();
-    messageEl.innerHTML = null;
-    letter.innerHTML = null;
+    // messageEl.innerHTML = null;
+    // letter.innerHTML = null;
+
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-      console.log('Please enter a single letter');
-      messageEl.innerText = 'Please enter a single letter';
-      letter = null;
+        console.log('Please enter a single letter'); //to test 
+        messageEl.innerHTML = 'Please enter a single letter';
+        letter = null; 
     } else if (letter.length === 1) {
         console.log(letter);
         guessedLetters.push(letter);
@@ -98,7 +100,7 @@ function guessLetterEventHandler() {
 
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
-            console.log('Good guess!');
+            // console.log('Good guess!');
             messageEl.innerHTML = 'Good guess!';
             letter = null;
             renderAnswerHTML();
@@ -112,7 +114,7 @@ function guessLetterEventHandler() {
         changeImages();
         }
     messageEl.innerHTML = null;
-    // letter.innerHTML = null; //clears input box so user can enter in a new letter
+    letter = null; //clears input box so user can enter in a new letter
 } 
 
 
