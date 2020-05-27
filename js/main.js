@@ -66,7 +66,8 @@ function render() {
     //show image based on how many wrong guesses
     //show list of guessed letters
     renderAnswerHTML();
-    renderHangman(); 
+
+    renderHangman();
     winGame();
     loseGame();
 }
@@ -96,6 +97,36 @@ function loseGame() {
         messageEl.innerHTML = 'YOU LOSE'; 
     }
 }
+//if it finishes the loop without returning false, we can assume that there are no more spaces left
+//if you go through whole loop and you enver return false, then all the letter were in guessed letters
+
+
+
+function renderAnswerHTML() {
+    let answerHTML = [];
+    for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
+        if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
+            // messageEl.innerHTML = 'Good guess!';
+            answerHTML.push(randomWord[i]);
+        } else {
+            // messageEl.innerHTML = 'Try again!';
+            answerHTML.push('___');
+        }
+    }
+    fillInBlanksEl.innerHTML = answerHTML.join(' ');
+}
+//We're looping through the letters of randomWord 
+//if a letter in randomWord includes a player's guessed letter, randomWord's letter is pushed onto answerHTML
+//if not, an underscore is pushed to answerHTML
+//answerWord = ___ ___ ___ ___ ___ ___
+//answerHTML: changes the answerWord as the user enters a guessedLetters
+
+function loseGame() {
+    if (wrongGuesses === 6) {
+        messageEl.innerHTML = 'YOU LOSE'; 
+    }
+}
+
 
 function renderAnswerHTML() {
     let answerHTML = [];
@@ -192,3 +223,5 @@ function renderHangman() { //take the state and translate state into DOM
 }
 //reference to each hangman elements
 //set all styles to display: none
+
+
