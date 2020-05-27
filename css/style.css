@@ -29,8 +29,12 @@ body {
 }
 
 .image img {
-    display: none;
+    display: none; 
 }
+
+/* .one.empty {
+    display: block;
+} */
 
 .box {
     grid-area: box;

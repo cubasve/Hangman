@@ -5,7 +5,6 @@
 const foodDishArray = ['perogies', 'lasagna', 'pho', 'poutine', 'sushi', 'pizza', 'kebab', 'falafel', 'burger'];
 
 
-
 /*-------APP'S STATE (VARIABLES)--------*/ 
 
 let randomWord;
@@ -19,6 +18,7 @@ let guessEl = document.getElementById('letterBox'); //get value of user's input
 let messageEl = document.getElementById('message');
 let fillInBlanksEl = document.getElementById('answer');
 let addLetterEl = document.getElementById('guessedLetters');
+
 //references to images
 let emptyHangman = document.querySelector('.one.empty');
 let headHangman = document.querySelector('.two.head');
@@ -47,16 +47,18 @@ function initialize() {
     //sets guessed letters to empty array
     //sets wrong guesses to 0
     //render()
-
     //already declared in the global scope - don't redeclare them, just assign them
+
     randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase(); 
     guessedLetters = []; //don't redeclare --> just assign
     wrongGuesses = 0; //game just started - no mistakes yet
-    answerWord = [];
+    // answerWord = [];
     addLetterEl.innerHTML = null;
     guessEl.value = null;
     messageEl.innerHTML = null;
+    emptyHangman.style.display = 'block';
     render();
+    // renderHangman();
 }
 
 function render() {
@@ -65,16 +67,44 @@ function render() {
     //show list of guessed letters
     renderAnswerHTML();
     renderHangman(); 
+    winGame();
+    loseGame();
+}
+
+function winGame() {
+    for (let i = 0; i < randomWord.length; i++) { //return: breaks out of function
+        if (!guessedLetters.includes(randomWord[i])) {
+            return false; //haven't won yet --> if you come across a letter that doesn't exist, you return false --> haven't won yet
+        } //if false, it won't run below code
+    }
+    // return true; --> goes through rest of loop if return false
+    messageEl.innerHTML = 'YOU WIN!'; 
+    letterButton.disabled = true; //if all randomWord letters are included in guessedLetters, then you win
+}
+//if it finishes the loop without returning false, we can assume that there are no more spaces left
+//if you go through whole loop and you enver return false, then all the letter were in guessed letters
+
+
+// function winOrLose() { //refactor into 1 function
+//     for (let i = 0; i < randomWord.length; i++) {
+
+// }
+
+
+function loseGame() {
+    if (wrongGuesses === 6) {
+        messageEl.innerHTML = 'YOU LOSE'; 
+    }
 }
 
 function renderAnswerHTML() {
     let answerHTML = [];
     for (let i = 0; i < randomWord.length; i++) { //.includes() returns T/F
         if (guessedLetters.includes(randomWord[i])) { //if letter of random word is included in guessedLetters, we add it to answerHTML (empty array)
-            messageEl.innerHTML = 'Good guess!';
+            // messageEl.innerHTML = 'Good guess!';
             answerHTML.push(randomWord[i]);
         } else {
-            messageEl.innerHTML = 'Try again!';
+            // messageEl.innerHTML = 'Try again!';
             answerHTML.push('___');
         }
     }
@@ -91,6 +121,7 @@ function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
     messageEl.innerHTML = null;
     guessEl.value = null;
+    let rightCheck = false; //default - if they guess one of them right --> hasn't gotten any letters correct
 
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
         console.log('Please enter a single letter'); //to test 
@@ -98,6 +129,14 @@ function guessLetterEventHandler() {
         letter = null; 
         return;
     } 
+
+    for (let i = 0; i < guessedLetters.length; i++) { //acounts for previously used letters - based off of what was already inputted by user, not randomWord
+        if (letter === guessedLetters[i]) {
+            messageEl.innerHTML = 'Already used this letter, enter another letter';
+            letter = null;
+            return;
+        } 
+    }
 
     if (letter.length === 1) {
         // console.log(letter);
@@ -108,19 +147,19 @@ function guessLetterEventHandler() {
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             renderAnswerHTML();
-            // messageEl.innerHTML = 'Good guess!';
+            rightCheck = true; //got 1 correct
+            messageEl.innerHTML = 'Good guess!';
             // letter = null;
             // renderAnswerHTML();
-          } else {
-            // messageEl.innerHTML = 'Try again!';
-            // letter = null;
-            wrongGuesses++;
-            renderHangman();
-          }
+          } 
         }
+    }
+    if (rightCheck === false) { //if correct, we switch to 'true' - if incorrect guess, it's false
+        wrongGuesses++;
     }
     messageEl.innerHTML = null;
     letter = null; //clears input box so user can enter in a new letter
+    render();
 }
 
 
@@ -153,85 +192,3 @@ function renderHangman() { //take the state and translate state into DOM
 }
 //reference to each hangman elements
 //set all styles to display: none
-
-
-
-
-// function hangMan() {
-//     let wrongGuesses = 0;
-//     // if (wrongGuesses === 0) { //empty
-//     //     document.querySelector('.one').src = "img/emptyHangman.png";
-
-//     if (wrongGuesses > 0) { //head
-//         document.querySelector('.two').src = "img/headHangman.png";
-//     } else if (wrongGuesses > 1) { //body --> continue on
-//         document.querySelector('.three').src = "img/bodyHangman.png";
-//     } else if (wrongGuesses === 3) { //1 arm
-//         document.querySelector('.four').src = "img/oneArmHangman.png";
-//     } else if (wrongGuesses === 4) { //2 arms
-//         document.querySelector('.five').src = "img/twoArmHangman.png";
-//     } else if (wrongGuesses === 5) { //1 leg
-//         document.querySelector('.six').src = "img/oneFootHangman.png";
-//     } else if (wrongGuesses === 6) { //full hangman
-//         document.querySelector('.seven').src = "img/fullHangman.png";
-//     } 
-// }
-
-
-
-
-
-
-
-
-
-// function selectCategory() {
-
-// }
-
-// function selectFruitArr() {
-//     let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
-// }
-// function selectVegArr() {
-//     let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase();
-// }
-// function selectSnackArr() {
-//     let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase();
-// }
-// function selectDishArr() {
-//     let randomWord = dishesArray[Math.floor(Math.random() * dishesArray.length)].toUpperCase();
-// }
-
-// function selectCategory() {
-//     if (selectedCategory === categories[0]) {
-//         let randomWord = fruitArray[Math.floor(Math.random() * fruitArray.length)].toUpperCase();
-//     } else if (selectedCategory === categories[1]) {
-//         let randomWord = vegArray[Math.floor(Math.random() * vegArray.length)].toUpperCase();
-//     } else if (selectedCategory === categories[2]) {
-//         let randomWord = snackArray[Math.floor(Math.random() * snackArray.length)].toUpperCase();
-//     } else if (selectedCategory === categories[3]) {
-//         let randomWord = foodDishArray[Math.floor(Math.random() * foodDishArray.length)].toUpperCase();
-//     }
-// }
-
-
-    // let answerWord.length = randomWord.length; //Not sure about this line of code
-    // for (let i = 0; i < answerWord.length; i++) {
-    //     if (guessEl.value === randomWord[i]) {
-    //         answerWord.innerHTML = guessLetters.value;
-    //         guessedLetters.push(guessEl.value)
-    //     } else {
-
-    //     }
-    // }
-    // renderAnswerHTML();
-    // // let answerWord.length = randomWord.length;
-    // for (let i =0; i < answerWord.length; i++) {
-    //     // let letter = document.getElementById('')
-    //     if (guessLetters[i]) {
-    //         answerWord.innerHTML = guessLetters.value;
-    //         guessedLetters.push();//
-    //     } else {
-
-    //     }
-    // }
