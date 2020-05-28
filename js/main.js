@@ -54,6 +54,7 @@ function render() {
 function winOrLose() { 
     if (wrongGuesses === 6) {
         messageEl.innerHTML = 'YOU LOSE'; 
+        fullHangman.style.display = 'block'; //fullHangman picture still shows eve if user keeps on guessing after they lost --> doesn't disappear
         return;
     }
 
@@ -184,8 +185,7 @@ function renderHangman() {
         footHangman.style.display = 'block';
     } else if (wrongGuesses === 6) {
         fullHangman.style.display = 'block';
-    }
-
+    } 
 }
 
 
