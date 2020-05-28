@@ -66,12 +66,11 @@ p {
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
     margin-top: 0px;
-    padding: 0px;
 }
-
 
 #letterBox {
     margin: 0 auto;
+
 }
 
 button {
