@@ -49,7 +49,10 @@ function render() {
     renderHangman(); 
     winOrLose();
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4b28cf47eb396be49a4ae8627b7e3ce4e1b6198d
 
 function winOrLose() { 
     if (wrongGuesses === 6) {
@@ -57,6 +60,15 @@ function winOrLose() {
         return;
     }
 
+<<<<<<< HEAD
+function winOrLose() { 
+    if (wrongGuesses === 6) {
+        messageEl.innerHTML = 'YOU LOSE'; 
+        return;
+    }
+
+=======
+>>>>>>> 4b28cf47eb396be49a4ae8627b7e3ce4e1b6198d
     for (let i = 0; i < randomWord.length; i++) {
         if (!guessedLetters.includes(randomWord[i])) { 
             return false; 
@@ -161,3 +173,9 @@ function renderHangman() {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 4b28cf47eb396be49a4ae8627b7e3ce4e1b6198d
