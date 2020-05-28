@@ -110,13 +110,11 @@ function guessLetterEventHandler() {
           if (randomWord[i].includes(letter)) {
             renderAnswerHTML();
             rightCheck = true; 
-            messageEl.innerHTML = 'Good guess!';
           } 
         }
     }
     if (rightCheck === false) { 
         wrongGuesses++;
-        messageEl.innerHTML = 'Try again!';
     }
     messageEl.innerHTML = null;
     letter = null; 
