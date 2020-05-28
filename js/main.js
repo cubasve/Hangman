@@ -192,3 +192,4 @@ function renderHangman() { //take the state and translate state into DOM
 }
 //reference to each hangman elements
 //set all styles to display: none
+˜
