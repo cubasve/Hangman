@@ -82,19 +82,6 @@ function renderAnswerHTML() {
 }
 
 
-function renderAnswerHTML() {
-    let answerHTML = [];
-    for (let i = 0; i < randomWord.length; i++) { 
-        if (guessedLetters.includes(randomWord[i])) { 
-            answerHTML.push(randomWord[i]);
-        } else {
-            answerHTML.push('___');
-        }
-    }
-    fillInBlanksEl.innerHTML = answerHTML.join(' ');
-}
-
-
 function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
     messageEl.innerHTML = null;
