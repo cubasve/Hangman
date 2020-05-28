@@ -13,10 +13,7 @@ Have fun!
 **Screenshots of game:**
 
 
-![image](https://user-images.githubusercontent.com/62129720/83155621-6a480280-a0cf-11ea-9a3e-9da74d104d3d.png)
-
-
-![image](https://user-images.githubusercontent.com/62129720/83155964-cf9bf380-a0cf-11ea-83d4-ca018947a7bd.png)
+![image](https://user-images.githubusercontent.com/62129720/83155621-6a480280-a0cf-11ea-9a3e-9da74d104d3d.png) | ![image](https://user-images.githubusercontent.com/62129720/83155964-cf9bf380-a0cf-11ea-83d4-ca018947a7bd.png)
 
 
 **Technologies Used:**
