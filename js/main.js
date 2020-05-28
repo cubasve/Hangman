@@ -54,7 +54,7 @@ function render() {
 function winOrLose() { 
     if (wrongGuesses === 6) {
         messageEl.innerHTML = 'YOU LOSE'; 
-        fullHangman.style.display = 'block'; //fullHangman picture still shows eve if user keeps on guessing after they lost --> doesn't disappear
+        fullHangman.style.display = 'block'; 
         return;
     }
 
@@ -122,7 +122,7 @@ function guessLetterEventHandler() {
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             renderAnswerHTML();
-            rightCheck = true; //got 1 correct
+            rightCheck = true; 
             messageEl.innerHTML = 'Good guess!';
           } 
         }
@@ -164,7 +164,4 @@ function renderHangman() {
         fullHangman.style.display = 'block';
     }
 }
-
-
-
 

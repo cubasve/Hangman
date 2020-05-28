@@ -32,10 +32,6 @@ body {
     display: none; 
 }
 
-/* .one.empty {
-    display: block;
-} */
-
 .box {
     grid-area: box;
     display: flex;
@@ -65,12 +61,11 @@ p {
     color: #191970;
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
-    margin-top: 0px;
+    margin: 0px;
 }
 
 #letterBox {
     margin: 0 auto;
-
 }
 
 button {
