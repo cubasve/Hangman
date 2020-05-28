@@ -106,31 +106,6 @@ function renderAnswerHTML() {
     fillInBlanksEl.innerHTML = answerHTML.join(' ');
 }
 
-// function renderMessage() {
-//     let letter = guessEl.value.toUpperCase();
-//     let rightCheck = false;
-
-//     if (letter !== 1 || letter === null || isNaN(letter) === false) {
-//         messageEl.innerHTML = 'Please enter a single letter';
-//         return;
-//     }
-
-//     if (letter === guessedLetters[i]) {
-//         messageEl.innerHTML = 'Already used this letter, enter another letter';
-//         return;
-//     }
-
-//     if (randomWord[i].includes(letter)) {
-//         messageEl.innerHTML = 'Good guess!';
-//         return;
-//     }
-
-//     if (rightCheck === false) {
-//         messageEl.innerHTML = 'Try again!';
-//         return;
-//     }
-//     return null;
-// }
 
 function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
