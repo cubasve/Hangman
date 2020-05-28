@@ -31,11 +31,11 @@ https://cubasve.github.io/Hangman/
 
 - Include categories: The current category of the game is limited to food. Having more variety appeals to more potential users.
 
-- Incorporate phrases: Only words were used in this current version of the game. Using phrases makes the game more challenging. With an increase in word count, there should be a corresponding increase in the amount of mistakes a player can make.
+- Incorporate phrases: Only words were used in this current version of the game. Using phrases makes the game more challenging. With an increase in word count, there should be also be an increase in the amount of mistakes a player can make.
 
 - The player can guess the entire word/phrase if they choose to: Instead of guessing one character at a time until all characters are filled up, the player can type in their guess for the entire word/phrase at any time. 
 
-- Include a built-in keyboard for the application: Rather than the user using their keyboard on their laptop or phone, the game could incorporate a built-in keyword, which makes for a better user experience.
+- Include a built-in keyboard for the application: Rather than the user using their keyboard on their laptop/tablet/phone, the game could incorporate a built-in keyword, which makes for a better user experience.
 
 
 
