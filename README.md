@@ -5,6 +5,7 @@ The player is presented with a random word in underscores, where each line repre
 The player inputs a guess one letter at a time to eventually guess the full word. 
 Each character that is incorrectly guessed and is not in the word/phrase will result in a body part being drawn. 
 The user can only make six mistakes before the hangman is completely drawn. 
+
 May the odds be in your favor.
 Have fun!
 
@@ -12,6 +13,11 @@ Have fun!
 **Screenshots of game:**
 
 
+<<<<<<< HEAD
+=======
+![image](https://user-images.githubusercontent.com/62129720/83155621-6a480280-a0cf-11ea-9a3e-9da74d104d3d.png) | ![image](https://user-images.githubusercontent.com/62129720/83155964-cf9bf380-a0cf-11ea-83d4-ca018947a7bd.png)
+
+>>>>>>> master
 
 **Technologies Used:**
 - HTML
