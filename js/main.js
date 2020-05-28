@@ -86,7 +86,7 @@ function guessLetterEventHandler() {
     let letter = guessEl.value.toUpperCase();
     messageEl.innerHTML = null;
     guessEl.value = null;
-    let rightCheck = false; 
+    let wrongLetterCheck = false; //
 
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
         messageEl.innerHTML = 'Please enter a single letter';
@@ -109,12 +109,12 @@ function guessLetterEventHandler() {
         for (let i = 0; i < randomWord.length; i++) {
           if (randomWord[i].includes(letter)) {
             renderAnswerHTML();
-            rightCheck = true; 
+            wrongLetterCheck = true; 
           } 
         }
     }
-    if (rightCheck === false) { 
-        wrongGuesses++;
+    if (wrongLetterCheck === false) { 
+        wrongGuesses++; 
     }
     messageEl.innerHTML = null;
     letter = null; 
