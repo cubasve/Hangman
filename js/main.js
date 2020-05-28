@@ -160,7 +160,9 @@ function renderHangman() {
         footHangman.style.display = 'block';
     } else if (wrongGuesses === 6) {
         fullHangman.style.display = 'block';
-    } 
+    } else if (wrongGuesses >= 6) {
+        fullHangman.style.display = 'block';
+    }
 }
 
 
