@@ -161,12 +161,7 @@ function renderHangman() {
     }
 
 }
-<<<<<<< HEAD
-//reference to each hangman elements
-//set all styles to display: none
-˜
-=======
 
 
 
->>>>>>> 4b28cf47eb396be49a4ae8627b7e3ce4e1b6198d
+
