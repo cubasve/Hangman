@@ -48,6 +48,7 @@ function render() {
     renderAnswerHTML(); 
     renderHangman(); 
     winOrLose();
+    renderMessage();
 }
 
 
@@ -103,7 +104,7 @@ function renderMessage() {
     }
 
     if (letter === guessedLetters[i]) {
-        messageEl.innerHTML = 'Please enter a single letter';
+        messageEl.innerHTML = 'Already used this letter, enter another letter';
         return;
     }
 
@@ -116,6 +117,7 @@ function renderMessage() {
         messageEl.innerHTML = 'Try again!';
         return;
     }
+    return null;
 }
 
 function guessLetterEventHandler() {
@@ -125,14 +127,16 @@ function guessLetterEventHandler() {
     let rightCheck = false; 
 
     if (letter.length !== 1 || letter === null || isNaN(letter) === false) {
-        messageEl.innerHTML = 'Please enter a single letter';
+        // messageEl.innerHTML = 'Please enter a single letter';
+        renderMessage();
         letter = null; 
         return;
     } 
 
     for (let i = 0; i < guessedLetters.length; i++) { 
         if (letter === guessedLetters[i]) {
-            messageEl.innerHTML = 'Already used this letter, enter another letter';
+            // messageEl.innerHTML = 'Already used this letter, enter another letter';
+            renderMessage();
             letter = null;
             return;
         } 
@@ -146,12 +150,14 @@ function guessLetterEventHandler() {
           if (randomWord[i].includes(letter)) {
             renderAnswerHTML();
             rightCheck = true; //got 1 correct
-            messageEl.innerHTML = 'Good guess!';
+            // messageEl.innerHTML = 'Good guess!';
+            renderMessage();
           } 
         }
     }
     if (rightCheck === false) { 
         wrongGuesses++;
+        renderMessage();
     }
     messageEl.innerHTML = null;
     letter = null; 
