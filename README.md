@@ -22,7 +22,7 @@ Have fun!
 - JavaScript
 
 
-**Getting Started:** Game link
+**Getting Started:**
 https://cubasve.github.io/Hangman/
 
 
