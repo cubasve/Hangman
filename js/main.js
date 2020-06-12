@@ -60,12 +60,12 @@ function winOrLose() {
 
     for (let i = 0; i < randomWord.length; i++) {
         if (!guessedLetters.includes(randomWord[i])) { 
-            return false; 
+            return; 
         } 
     }
     messageEl.innerHTML = 'YOU WIN!';
     letterButton.disabled = true; 
-    return true; 
+    return; 
 }
 
 
